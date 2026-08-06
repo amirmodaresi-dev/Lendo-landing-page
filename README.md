@@ -1,4 +1,4 @@
-# Lendo Landing Page Clone (Responsive)
+# Lendo Landing Page
 
 A pixel-perfect and fully responsive clone of the **Lendo** (لندو) landing page, built with a strong focus on mobile-first design, clean layout structures, and interactive user interface components.
 
