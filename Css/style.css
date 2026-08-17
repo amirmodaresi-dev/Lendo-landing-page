@@ -13,6 +13,32 @@
   /* Breakpoints: mobile <768 | tablet 768–991 | desktop >=992 */
   --bp-tablet: 768px;
   --bp-desktop: 992px;
+
+  /* ---- Theme tokens (Light — default) ---- */
+  --bg-page: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-surface-alt: var(--color-bg-light);
+  --bg-input: #f8fafc;
+  --text-heading: var(--color-primary-dark);
+  --text-heading-soft: var(--color-primary);
+  --text-body: #333333;
+  --text-muted: var(--color-text-muted);
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ---- Theme tokens (Dark) ---- */
+[data-theme="dark"] {
+  --bg-page: #0b1220;
+  --bg-surface: #161f30;
+  --bg-surface-alt: #1b2536;
+  --bg-input: #202b40;
+  --text-heading: #e7ecfb;
+  --text-heading-soft: #c7d3f7;
+  --text-body: #cbd5e1;
+  --text-muted: #93a2c2;
+  --border-color: #2a3650;
+  --shadow-color: rgba(0, 0, 0, 0.45);
 }
 
 *,
@@ -28,6 +54,11 @@ html,
 body {
   overflow-x: hidden;
   max-width: 100vw;
+  background-color: var(--bg-page);
+  color: var(--text-body);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* ==========================================================================
@@ -61,9 +92,10 @@ body {
   width: 100%;
   position: sticky;
   top: 0;
-  background-color: #ffffff;
+  background-color: var(--bg-surface);
   z-index: 100;
   padding: 0 15px;
+  transition: background-color 0.3s ease;
 }
 
 .navbar-right {
@@ -177,6 +209,238 @@ body {
 
 .logout-btn {
   color: #d9534f;
+}
+
+.requests-badge {
+  background-color: var(--color-success);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   3.b THEME TOGGLE (Dark / Light)
+   ========================================================================== */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface-alt);
+  color: var(--text-heading);
+  cursor: pointer;
+  margin-left: 12px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--border-color);
+}
+
+.theme-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle-btn .icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .icon-moon {
+  display: block;
+}
+
+/* ==========================================================================
+   12.b MY REQUESTS MODAL (Loan Cart)
+   ========================================================================== */
+.requests-modal-card {
+  max-width: 480px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.requests-modal-header {
+  margin-bottom: 18px;
+  text-align: right;
+}
+
+.requests-modal-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 4px;
+}
+
+.requests-modal-header p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.requests-list {
+  overflow-y: auto;
+  max-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 4px;
+}
+
+.request-card {
+  border: 1.5px solid #eef1f7;
+  background-color: #f8fafc;
+  border-radius: 14px;
+  padding: 14px 16px;
+  position: relative;
+}
+
+.request-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.request-amount {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.request-amount span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-right: 4px;
+}
+
+.request-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background-color: #fff7e6;
+  color: #b8860b;
+  white-space: nowrap;
+}
+
+.request-card-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.request-card-details strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.request-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 10px;
+}
+
+.request-date {
+  font-size: 11px;
+  color: #9dabc5;
+}
+
+.request-cancel-btn {
+  border: none;
+  background: transparent;
+  color: #d9534f;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.request-cancel-btn:hover {
+  background-color: #fef2f2;
+}
+
+.requests-empty {
+  text-align: center;
+  padding: 30px 10px 10px;
+  color: var(--color-text-muted);
+}
+
+.requests-empty-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.requests-empty p {
+  font-size: 13.5px;
+}
+
+/* ==========================================================================
+   12.c TOAST NOTIFICATION
+   ========================================================================== */
+.toast-notification {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #16a34a;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.toast-notification.show {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.toast-notification.error {
+  background-color: #dc2626;
+}
+
+@media (max-width: 576px) {
+  .toast-notification {
+    right: 16px;
+    left: 16px;
+    bottom: 16px;
+  }
 }
 
 /* ==========================================================================
@@ -1546,6 +1810,9 @@ body {
     width: 52px !important;
     height: 52px !important;
   }
+  .sec4 {
+    display: none;
+  }
 }
 
 /* ---------- Desktop ---------- */
@@ -1557,4 +1824,338 @@ body {
   .lendo-slider .nav-btn {
     display: block;
   }
+}
+
+/* ==========================================================================
+   14. DARK THEME OVERRIDES
+   ========================================================================== */
+
+/* --- Navbar / Auth --- */
+[data-theme="dark"] .navbar ul li {
+  color: var(--text-heading-soft);
+}
+
+[data-theme="dark"] .login-btn {
+  color: var(--text-heading);
+  border-color: var(--text-heading);
+}
+
+[data-theme="dark"] .login-btn:hover {
+  background-color: var(--text-heading);
+  color: var(--bg-page);
+}
+
+[data-theme="dark"] .profile-btn {
+  background-color: var(--bg-surface-alt);
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .dropdown-menu {
+  background-color: var(--bg-surface);
+  box-shadow: 0 10px 25px var(--shadow-color);
+}
+
+[data-theme="dark"] .dropdown-menu hr {
+  border-top-color: var(--border-color);
+}
+
+[data-theme="dark"] .menu-item {
+  color: var(--text-body);
+}
+
+[data-theme="dark"] .menu-item:hover {
+  background-color: var(--bg-surface-alt);
+}
+
+[data-theme="dark"] .logout-btn {
+  color: #f87171;
+}
+
+/* --- Section 2 (Feature icons) --- */
+[data-theme="dark"] .sec2-boxs p {
+  color: var(--text-body);
+}
+
+/* --- Section 3 (Steps) --- */
+[data-theme="dark"] .sec3-title {
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .sec3-lvl {
+  background-color: var(--bg-surface-alt);
+}
+
+[data-theme="dark"] .sec3-lvl h5 {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .sec3-lvl h5.active {
+  background-color: var(--bg-surface);
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .sec3-des h3 {
+  color: var(--text-heading-soft);
+}
+
+[data-theme="dark"] .sec3-des h5 {
+  color: var(--text-body);
+}
+
+[data-theme="dark"] .sec3-box-btn {
+  background-color: var(--bg-surface);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .sec3-icon {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .sec3-dot {
+  background-color: rgba(148, 163, 184, 0.35);
+}
+
+[data-theme="dark"] .sec3-dot.active {
+  background-color: var(--color-accent) !important;
+}
+
+/* --- Section 5 (Loan calculator) --- */
+[data-theme="dark"] .sec5 {
+  background-color: var(--bg-surface-alt);
+}
+
+[data-theme="dark"] .sec5-boxs {
+  background-color: var(--bg-surface);
+  box-shadow: 0px 16px 24px 0px var(--shadow-color);
+}
+
+[data-theme="dark"] .sec5-box1-1 h2,
+[data-theme="dark"] .sec5-box1-1 p,
+[data-theme="dark"] .box2-1-span,
+[data-theme="dark"] .box2-1-span2,
+[data-theme="dark"] .right-text1,
+[data-theme="dark"] .right-text2 {
+  color: var(--text-heading-soft);
+}
+
+[data-theme="dark"] .sec5-box2-1 button {
+  background-color: rgba(10, 201, 116, 0.12);
+}
+
+[data-theme="dark"] .sec5-box2-2 .max-min span,
+[data-theme="dark"] .right-text3 {
+  color: var(--text-muted);
+}
+
+/* --- Sections 6 & 7 --- */
+[data-theme="dark"] .sec6-text1 {
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .sec6-text2 {
+  color: var(--text-body);
+}
+
+/* --- Section 9 (FAQ) --- */
+[data-theme="dark"] .sec9-title {
+  color: var(--text-heading-soft);
+}
+
+[data-theme="dark"] .sec9-description {
+  color: var(--text-body);
+}
+
+[data-theme="dark"] .child {
+  background: var(--bg-surface-alt);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 25px var(--shadow-color);
+}
+
+[data-theme="dark"] .close {
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .question {
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .answer {
+  color: var(--text-body);
+}
+
+/* --- Footer --- */
+[data-theme="dark"] .footer-text h4 {
+  color: var(--text-heading-soft);
+}
+
+[data-theme="dark"] .footer-text h5 {
+  color: var(--text-body);
+}
+
+[data-theme="dark"] .footer-end {
+  background-color: var(--bg-surface-alt);
+}
+
+[data-theme="dark"] .span-end {
+  color: var(--text-muted);
+}
+
+/* --- Auth Modal --- */
+[data-theme="dark"] .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .modal-card {
+  background-color: var(--bg-surface);
+  box-shadow: 0 20px 40px var(--shadow-color);
+}
+
+[data-theme="dark"] .modal-close-btn {
+  background-color: var(--bg-surface-alt);
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .modal-close-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .auth-tabs {
+  border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .tab-btn {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .tab-btn.active {
+  color: var(--color-accent);
+}
+
+[data-theme="dark"] .tab-btn.active::after {
+  background-color: var(--color-accent);
+}
+
+[data-theme="dark"] .input-group label {
+  color: var(--text-body);
+}
+
+[data-theme="dark"] .input-group input {
+  background-color: var(--bg-input);
+  color: var(--text-heading);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .input-group input:focus {
+  border-color: var(--color-accent);
+  background-color: var(--bg-input);
+  box-shadow: 0 0 0 4px rgba(0, 130, 253, 0.15);
+}
+
+[data-theme="dark"] .input-group input::placeholder {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .modal-card .btn-primary {
+  background-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(0, 130, 253, 0.3);
+}
+
+[data-theme="dark"] .modal-card .btn-primary:hover {
+  background-color: #0068cc;
+  box-shadow: 0 6px 16px rgba(0, 130, 253, 0.4);
+}
+
+[data-theme="dark"] .auth-alert.error {
+  background-color: rgba(220, 38, 38, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+}
+
+[data-theme="dark"] .auth-alert.success {
+  background-color: rgba(22, 163, 74, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(22, 163, 74, 0.4);
+}
+
+/* --- My Requests (Loan Cart) --- */
+[data-theme="dark"] .requests-modal-header h3 {
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .requests-modal-header p {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .request-card {
+  border-color: var(--border-color);
+  background-color: var(--bg-surface-alt);
+}
+
+[data-theme="dark"] .request-amount {
+  color: var(--text-heading);
+}
+
+[data-theme="dark"] .request-amount span {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .request-status {
+  background-color: rgba(184, 134, 11, 0.18);
+  color: #f0b429;
+}
+
+[data-theme="dark"] .request-card-details {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .request-card-details strong {
+  color: var(--text-heading-soft);
+}
+
+[data-theme="dark"] .request-card-footer {
+  border-top-color: var(--border-color);
+}
+
+[data-theme="dark"] .request-date {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .request-cancel-btn {
+  color: #f87171;
+}
+
+[data-theme="dark"] .request-cancel-btn:hover {
+  background-color: rgba(220, 38, 38, 0.15);
+}
+
+[data-theme="dark"] .requests-empty {
+  color: var(--text-muted);
+}
+
+/* --- Chat Widget --- */
+[data-theme="dark"] .chat-widget {
+  background-color: var(--bg-surface-alt) !important;
+}
+
+[data-theme="dark"] .chat-bubble {
+  background: var(--bg-surface);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+[data-theme="dark"] .options-bubble::before,
+[data-theme="dark"] .text-bubble::before {
+  border-right-color: var(--bg-surface);
+}
+
+[data-theme="dark"] .bubble-title {
+  color: var(--text-body);
+}
+
+[data-theme="dark"] .text-bubble p {
+  color: var(--text-body);
+}
+
+[data-theme="dark"] .chat-time {
+  color: var(--text-muted);
 }
