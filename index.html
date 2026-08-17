@@ -118,6 +118,41 @@
         <div
           class="navbar-left col-6 col-lg-4 d-flex justify-content-end align-items-center p-0"
         >
+          <button
+            class="theme-toggle-btn"
+            id="themeToggleBtn"
+            type="button"
+            aria-label="تغییر تم روشن و تاریک"
+          >
+            <svg
+              class="icon-sun"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+              ></path>
+            </svg>
+            <svg
+              class="icon-moon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
           <div class="user-auth-area">
             <button class="login-btn" id="headerLoginBtn">
               ورود / ثبت نام
@@ -140,7 +175,15 @@
                   <small>خوش آمدید!</small>
                 </div>
                 <hr />
-                <a href="#" class="menu-item"><span>📋</span> درخواست‌های من</a>
+                <button type="button" class="menu-item" id="myRequestsBtn">
+                  <span>📋</span> درخواست‌های من
+                  <span
+                    class="requests-badge"
+                    id="requestsBadge"
+                    style="display: none"
+                    >0</span
+                  >
+                </button>
                 <a href="#" class="menu-item"><span>💳</span> کیف پول</a>
                 <a href="#" class="menu-item"><span>⚙️</span> تنظیمات حساب</a>
                 <hr />
@@ -968,6 +1011,30 @@
         </form>
       </div>
     </div>
+
+    <!-- مودال درخواست‌های من (سبد وام) -->
+    <div class="modal-overlay" id="myRequestsModal">
+      <div class="modal-card requests-modal-card">
+        <button class="modal-close-btn" id="closeMyRequestsModal">
+          &times;
+        </button>
+
+        <div class="requests-modal-header">
+          <h3>درخواست‌های من</h3>
+          <p>لیست وام‌هایی که درخواست داده‌اید</p>
+        </div>
+
+        <div class="requests-list" id="requestsList"></div>
+
+        <div class="requests-empty" id="requestsEmpty" style="display: none">
+          <span class="requests-empty-icon">📭</span>
+          <p>هنوز هیچ درخواست وامی ثبت نکرده‌اید.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- نوتیفیکیشن شناور -->
+    <div class="toast-notification" id="toastNotification"></div>
 
     <!-- دکمه چت  -->
     <button
