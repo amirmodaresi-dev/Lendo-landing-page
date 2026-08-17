@@ -1,5 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
   // ==========================================
+  // ۰. تغییر تم (Dark / Light Mode)
+  // ==========================================
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
+
+  function applyTheme(theme) {
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+    localStorage.setItem("lendoTheme", theme);
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const isDark =
+        document.documentElement.getAttribute("data-theme") === "dark";
+      applyTheme(isDark ? "light" : "dark");
+    });
+  }
+
+  // ==========================================
   // ۱. اسلایدر (Hero Slider)
   // ==========================================
 
@@ -345,6 +367,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (headerLoginBtn) headerLoginBtn.style.display = "inline-block";
       if (userProfileDropdown) userProfileDropdown.style.display = "none";
     }
+
+    if (typeof updateRequestsBadge === "function") updateRequestsBadge();
   }
 
   // باز/بسته کردن منوی دراپ‌داون پروفایل
@@ -489,10 +513,207 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ==========================================
+  // ۶. سیستم درخواست‌های وام (سبد وام)
+  // ==========================================
+  const loanRequestBtn = document.querySelector(".sec5-left-btn");
+  const myRequestsBtn = document.getElementById("myRequestsBtn");
+  const myRequestsModal = document.getElementById("myRequestsModal");
+  const closeMyRequestsModal = document.getElementById("closeMyRequestsModal");
+  const requestsList = document.getElementById("requestsList");
+  const requestsEmpty = document.getElementById("requestsEmpty");
+  const requestsBadge = document.getElementById("requestsBadge");
+  const toastNotification = document.getElementById("toastNotification");
+
+  // گرفتن نام کاربر لاگین‌شده
+  function getCurrentUser() {
+    return localStorage.getItem("loggedInUser");
+  }
+
+  //هر کاربر، سبد درخواست‌های جداگانه خودش رو داره
+  function getRequestsStorageKey() {
+    const user = getCurrentUser();
+    return user ? `lendoLoanRequests_${user}` : null;
+  }
+
+  function getLoanRequests() {
+    const key = getRequestsStorageKey();
+    if (!key) return [];
+    try {
+      return JSON.parse(localStorage.getItem(key)) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveLoanRequests(list) {
+    const key = getRequestsStorageKey();
+    if (!key) return;
+    localStorage.setItem(key, JSON.stringify(list));
+  }
+
+  // نمایش نوتیف
+  let toastTimeout = null;
+  function showToast(message, type = "success") {
+    if (!toastNotification) return;
+    toastNotification.textContent = message;
+    toastNotification.className = `toast-notification show ${type}`;
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toastNotification.classList.remove("show");
+    }, 2800);
+  }
+
+  // به‌روزرسانی شمارنده کنار «درخواست‌های من»
+  function updateRequestsBadge() {
+    if (!requestsBadge) return;
+    const count = getLoanRequests().length;
+    if (count > 0) {
+      requestsBadge.textContent = count;
+      requestsBadge.style.display = "inline-flex";
+    } else {
+      requestsBadge.style.display = "none";
+    }
+  }
+
+  // ساخت HTML یک کارت درخواست
+  function buildRequestCardHTML(req) {
+    return `
+      <div class="request-card" data-id="${req.id}">
+        <div class="request-card-top">
+          <div class="request-amount">
+            ${formatNumber(req.amount)}<span>تومان</span>
+          </div>
+          <span class="request-status">${req.status}</span>
+        </div>
+        <div class="request-card-details">
+          <span>مدت بازپرداخت: <strong>${req.months} ماه</strong></span>
+          <span>قسط ماهیانه: <strong>${formatNumber(req.monthly)} تومان</strong></span>
+        </div>
+        <div class="request-card-footer">
+          <span class="request-date">${req.date}</span>
+          <button type="button" class="request-cancel-btn" data-id="${req.id}">
+            انصراف از درخواست
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  // رندر کردن لیست درخواست‌ها داخل مودال
+  function renderRequestsList() {
+    if (!requestsList || !requestsEmpty) return;
+    const requests = getLoanRequests();
+
+    if (requests.length === 0) {
+      requestsList.innerHTML = "";
+      requestsEmpty.style.display = "block";
+      return;
+    }
+
+    requestsEmpty.style.display = "none";
+    requestsList.innerHTML = requests
+      .slice()
+      .reverse()
+      .map(buildRequestCardHTML)
+      .join("");
+  }
+
+  // افزودن یک درخواست جدید وام
+  function addLoanRequest() {
+    const amount = parseInt(loanRange.value, 10) || 0;
+    const monthly = parseInt(
+      (monthlyDisplay.textContent || "0").replace(/,/g, ""),
+      10,
+    );
+
+    const newRequest = {
+      id: Date.now().toString(),
+      amount,
+      months,
+      monthly,
+      status: "در حال بررسی",
+      date: new Intl.DateTimeFormat("fa-IR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }).format(new Date()),
+    };
+
+    const requests = getLoanRequests();
+    requests.push(newRequest);
+    saveLoanRequests(requests);
+    updateRequestsBadge();
+    renderRequestsList();
+    showToast("درخواست وام شما با موفقیت ثبت شد ✅");
+  }
+
+  // حذف یک درخواست از سبد
+  function removeLoanRequest(id) {
+    const requests = getLoanRequests().filter((r) => r.id !== id);
+    saveLoanRequests(requests);
+    updateRequestsBadge();
+    renderRequestsList();
+    showToast("درخواست موردنظر حذف شد", "error");
+  }
+
+  // کلیک روی دکمه «درخواست وام» در سکشن ۵
+  if (loanRequestBtn) {
+    loanRequestBtn.addEventListener("click", () => {
+      const currentUser = getCurrentUser();
+
+      if (!currentUser) {
+        showToast("برای ثبت درخواست، ابتدا وارد حساب کاربری خود شوید", "error");
+        if (authModal) {
+          authModal.classList.add("active");
+          hideAlert();
+        }
+        return;
+      }
+
+      addLoanRequest();
+    });
+  }
+
+  // باز کردن مودال «درخواست‌های من»
+  if (myRequestsBtn && myRequestsModal) {
+    myRequestsBtn.addEventListener("click", () => {
+      if (dropdownMenu) dropdownMenu.classList.remove("show");
+      if (userProfileDropdown) userProfileDropdown.classList.remove("active");
+      renderRequestsList();
+      myRequestsModal.classList.add("active");
+    });
+  }
+
+  // بستن مودال «درخواست‌های من»
+  if (closeMyRequestsModal && myRequestsModal) {
+    closeMyRequestsModal.addEventListener("click", () => {
+      myRequestsModal.classList.remove("active");
+    });
+  }
+
+  if (myRequestsModal) {
+    myRequestsModal.addEventListener("click", (e) => {
+      if (e.target === myRequestsModal) {
+        myRequestsModal.classList.remove("active");
+      }
+    });
+  }
+
+  // حذف درخواست با کلیک روی دکمه «انصراف»
+  if (requestsList) {
+    requestsList.addEventListener("click", (e) => {
+      const btn = e.target.closest(".request-cancel-btn");
+      if (btn) {
+        removeLoanRequest(btn.dataset.id);
+      }
+    });
+  }
+
   checkAuthStatus();
 
   // ==========================================
-  // ۶. ویجت چت پشتیبانی آنلاین
+  // ۷. ویجت چت پشتیبانی آنلاین
   // ==========================================
   const chatToggleBtn = document.getElementById("chatToggleBtn");
   const chatWidget = document.getElementById("chatWidget");
