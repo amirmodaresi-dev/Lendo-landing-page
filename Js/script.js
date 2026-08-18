@@ -328,9 +328,23 @@ document.addEventListener("DOMContentLoaded", function () {
   faqItems.forEach((item) => {
     item.addEventListener("click", function () {
       const isOpen = this.classList.contains("open");
-      faqItems.forEach((c) => c.classList.remove("open"));
+      faqItems.forEach((c) => {
+        c.classList.remove("open");
+        c.setAttribute("aria-expanded", "false");
+      });
       if (!isOpen) {
         this.classList.add("open");
+        this.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  // فعال‌سازی با کیبورد (Enter/Space) برای المان‌های سفارشی role="button"
+  document.querySelectorAll('[role="button"][tabindex]').forEach((el) => {
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        el.click();
       }
     });
   });
@@ -530,7 +544,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return localStorage.getItem("loggedInUser");
   }
 
-  //هر کاربر، سبد درخواست‌های جداگانه خودش رو داره
+  // هر کاربر، سبد درخواست‌های جداگانه خودش رو داره
   function getRequestsStorageKey() {
     const user = getCurrentUser();
     return user ? `lendoLoanRequests_${user}` : null;
@@ -709,7 +723,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
   checkAuthStatus();
 
   // ==========================================
