@@ -635,11 +635,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // افزودن یک درخواست جدید وام
   function addLoanRequest() {
+    if (!loanRange) return;
+
     const amount = parseInt(loanRange.value, 10) || 0;
-    const monthly = parseInt(
-      (monthlyDisplay.textContent || "0").replace(/,/g, ""),
-      10,
-    );
+    const totalPayable = Math.round(amount * (1 + interestRate));
+    const monthly = Math.round(totalPayable / months);
 
     const newRequest = {
       id: Date.now().toString(),
