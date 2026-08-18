@@ -447,6 +447,7 @@ input:focus-visible,
   background-color: #f8fafc;
   border-radius: 14px;
   padding: 14px 16px;
+  margin-top: 5px;
   position: relative;
   transition:
     border-color var(--transition-fast),
@@ -1467,7 +1468,7 @@ input:focus-visible,
 /* ==========================================================================
    12. AUTH MODAL
    ========================================================================== */
-.modal-overlay * {
+.modal-overlay {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
