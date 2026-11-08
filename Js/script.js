@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // ==========================================
-  // ۰. تغییر تم (Dark / Light Mode)
+  // ۰. تغییر تم (Dark / Light Mode) + بازیابی از LocalStorage
   // ==========================================
   const themeToggleBtn = document.getElementById("themeToggleBtn");
 
@@ -13,6 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("lendoTheme", theme);
   }
 
+  // بازیابی تم ذخیره‌شده هنگام لود صفحه
+  const savedTheme = localStorage.getItem("lendoTheme");
+  if (savedTheme === "dark") {
+    applyTheme("dark");
+  }
+
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", () => {
       const isDark =
@@ -21,60 +27,118 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ==========================================
-  // ۱. اسلایدر (Hero Slider)
-  // ==========================================
+  // سایه هدر هنگام اسکرول + منوی موبایل (Hamburger Drawer)
+  const siteHeader = document.querySelector(".site-header");
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!siteHeader) return;
+      if (window.scrollY > 12) {
+        siteHeader.classList.add("scrolled");
+      } else {
+        siteHeader.classList.remove("scrolled");
+      }
+    },
+    { passive: true },
+  );
 
+  const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+  const mobileNavDrawer = document.getElementById("mobileNavDrawer");
+  const mobileNavOverlay = document.getElementById("mobileNavOverlay");
+  const closeDrawerBtn = document.getElementById("closeDrawerBtn");
+
+  function openMobileDrawer() {
+    if (!mobileNavDrawer || !mobileNavOverlay) return;
+    mobileNavDrawer.classList.add("active");
+    mobileNavOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMobileDrawer() {
+    if (!mobileNavDrawer || !mobileNavOverlay) return;
+    mobileNavDrawer.classList.remove("active");
+    mobileNavOverlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener("click", openMobileDrawer);
+  }
+  if (closeDrawerBtn) {
+    closeDrawerBtn.addEventListener("click", closeMobileDrawer);
+  }
+  if (mobileNavOverlay) {
+    mobileNavOverlay.addEventListener("click", closeMobileDrawer);
+  }
+
+  document.querySelectorAll(".mobile-drawer-links a").forEach((link) => {
+    link.addEventListener("click", closeMobileDrawer);
+  });
+
+  // ==========================================
+  // ۱. اسلایدر (Hero Slider با دات‌ها و قابلیت سوایپ موبایل)
+  // ==========================================
   const slidesData = [
     {
       bgColor: "#2f34ce",
+      badge: "بدون ضامن و چک برگشتی",
       textImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/loan-text.svg",
       mainImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/loan-cards-illustration.png",
       btnText: "درخواست وام",
-      btnLink: "#",
+      btnLink: "#calculator-section",
+      lightSlide: false,
     },
     {
       bgColor: "#1e3a6e",
+      badge: "طرح فوری حامی لندو",
       textImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/hami-text.svg",
       mainImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/hami-illustration.png",
       btnText: "مشاوره رایگان",
-      btnLink: "#",
+      btnLink: "#hami-section",
+      lightSlide: false,
     },
     {
       bgColor: "#177b1d",
+      badge: "جشنواره ویژه لندو",
       textImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/worldcup-text.png",
       mainImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/worldCup-illustration.png",
       btnText: "محاسبه اقساط",
-      btnLink: "#",
+      btnLink: "#calculator-section",
+      lightSlide: false,
     },
     {
-      bgColor: "#3a7a62",
+      bgColor: "#2d6a56",
+      badge: "باشگاه مشتریان لندولند",
       textImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/lendoland-text.svg",
       mainImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/lendoland-illustration.png",
       btnText: "شرایط وام",
-      btnLink: "#",
+      btnLink: "#steps-section",
+      lightSlide: false,
     },
     {
       bgColor: "#cfeaff",
+      badge: "دعوت از دوستان",
       textImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/referral-text-3.svg",
       mainImg:
         "https://s4.lendo.ir/lendo-static/lendo-v2/home/slider/v3/referral-illustration.png",
-      btnText: "تماس با ما",
-      btnLink: "#",
+      btnText: "ارتباط با پشتیبانی",
+      btnLink: "#faq-section",
+      lightSlide: true,
     },
   ];
 
   const container = document.getElementById("slidesContainer");
   const slider = document.querySelector(".lendo-slider");
+  const sliderDotsContainer = document.getElementById("sliderDots");
   let currentIndex = 0;
   let slideInterval = null;
 
@@ -82,29 +146,50 @@ document.addEventListener("DOMContentLoaded", function () {
     slidesData.forEach((slide, index) => {
       const slideDiv = document.createElement("div");
       slideDiv.classList.add("slide");
+      if (slide.lightSlide) slideDiv.classList.add("light-slide");
       if (index === 0) slideDiv.classList.add("active");
 
       slideDiv.innerHTML = `
         <div class="right-side">
-          <img src="${slide.textImg}" alt="متن اسلاید" class="content-img"/>
-          <a href="${slide.btnLink}" class="action-btn">${slide.btnText}</a>
+          <span class="slide-badge">✨ ${slide.badge}</span>
+          <img src="${slide.textImg}" alt="متن اسلاید ${index + 1}" class="content-img"/>
+          <a href="${slide.btnLink}" class="action-btn">
+            <span>${slide.btnText}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          </a>
         </div>
         <div class="left-side">
-          <img src="${slide.mainImg}" alt="تصویر اسلاید" class="main-img"/>
+          <img src="${slide.mainImg}" alt="تصویر اسلاید ${index + 1}" class="main-img"/>
         </div>
       `;
       container.appendChild(slideDiv);
+
+      if (sliderDotsContainer) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = `slider-dot ${index === 0 ? "active" : ""}`;
+        dot.setAttribute("aria-label", `اسلاید ${index + 1}`);
+        dot.addEventListener("click", () => {
+          currentIndex = index;
+          showSlide(currentIndex);
+          resetAutoSlide();
+        });
+        sliderDotsContainer.appendChild(dot);
+      }
     });
 
     slider.style.backgroundColor = slidesData[0].bgColor;
 
     const slides = document.querySelectorAll(".slide");
+    const sliderDots = document.querySelectorAll(".slider-dot");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
     function showSlide(index) {
       slides.forEach((s) => s.classList.remove("active"));
+      sliderDots.forEach((d) => d.classList.remove("active"));
       slides[index].classList.add("active");
+      if (sliderDots[index]) sliderDots[index].classList.add("active");
       slider.style.backgroundColor = slidesData[index].bgColor;
     }
 
@@ -119,10 +204,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function startAutoSlide() {
-      slideInterval = setInterval(nextSlide, 5000);
+      slideInterval = setInterval(nextSlide, 5500);
     }
 
-    // ریست کردن تایمر هنگام کلیک کاربر
     function resetAutoSlide() {
       clearInterval(slideInterval);
       startAutoSlide();
@@ -140,72 +224,108 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    // پشتیبانی از سوایپ لمسی (Touch Swipe) برای موبایل
+    let touchStartX = 0;
+    slider.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      },
+      { passive: true },
+    );
+
+    slider.addEventListener(
+      "touchend",
+      (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 45) {
+          if (diff > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+          resetAutoSlide();
+        }
+      },
+      { passive: true },
+    );
+
     startAutoSlide();
   }
+
   // ==========================================
   // ۲. بخش مراحل و گام‌ها (Section 3)
   // ==========================================
   const stagesData = [
     {
-      title: "اعتبارسنجی",
+      stepBadge: "گام اول از ۷",
+      title: "اعتبارسنجی بانکی",
       description:
         "ابتدا لازم است با انجام اعتبارسنجی بانکی، رتبه اعتباری خود را بررسی کنید. این رتبه به شما نشان می‌دهد که شرایط دریافت وام لندو را دارید و با توجه به آن، مشخص می‌شود که کدام وام‌ها برای شما قابل دریافت هستند.",
       imgSrc: "https://s4.lendo.ir/lendo-static/lendo-v2/credit/step1-04.png",
-      linkText: "اعتبارسنجی",
-      linkHref: "#",
+      linkText: "شروع اعتبارسنجی",
+      linkHref: "#calculator-section",
     },
     {
-      title: "درخواست وام",
+      stepBadge: "گام دوم از ۷",
+      title: "ثبت درخواست وام",
       description:
-        "مبلغ وام و مدت بازپرداخت را انتخاب و درخواست وام خود را ثبت کنید.",
+        "مبلغ وام موردنیاز (از ۲۰ تا ۵۰ میلیون تومان) و مدت بازپرداخت دلخواه را انتخاب کرده و درخواست وام خود را به صورت کاملاً آنلاین ثبت کنید.",
       imgSrc: "https://s4.lendo.ir/lendo-static/lendo-v2/credit/step2-03.png",
-      linkText: "مشاهده وام‌ها",
-      linkHref: "#",
+      linkText: "مشاهده و انتخاب وام",
+      linkHref: "#calculator-section",
     },
     {
-      title: "بارگزاری مدارک",
+      stepBadge: "گام سوم از ۷",
+      title: "بارگذاری مدارک هویتی",
       description:
-        "در این مرحله باید وارد حساب کاربری خود شوید و مدارک لازم را بارگزاری کنید. بعد از بارگزاری مدارک، وارد مرحله اعتبارسنجی اولیه بانک می‌شوید.",
+        "در این مرحله وارد حساب کاربری خود شوید و تصویر کارت ملی و مدارک لازم را بارگذاری کنید. پس از بارگذاری مدارک، وارد مرحله اعتبارسنجی اولیه بانک می‌شوید.",
       imgSrc: "https://s4.lendo.ir/lendo-static/lendo-v2/credit/step2-02.png",
       linkText: "بارگذاری مدارک",
-      linkHref: "#",
+      linkHref: "#calculator-section",
     },
     {
+      stepBadge: "گام چهارم از ۷",
       title: "ثبت امضای الکترونیکی",
       description:
-        "از طریق نرم افزار آینده ساین، امضای الکترونیکی خود را ثبت کنید. با این امضا می‌توانید سفته الکترونیکی و قراردادهای لندو و بانک را به صورت آنلاین امضا کنید.",
+        "از طریق سامانه امضای دیجیتال، امضای الکترونیکی خود را ثبت کنید. با این امضا می‌توانید سفته الکترونیکی و قراردادهای لندو و بانک را بدون مراجعه حضوری امضا نمایید.",
       imgSrc: "https://s4.lendo.ir/lendo-static/lendo-v2/credit/step3-02.png",
-      linkText: "پیگیری وضعیت",
-      linkHref: "#",
+      linkText: "راهنمای امضای دیجیتال",
+      linkHref: "#faq-section",
     },
     {
+      stepBadge: "گام پنجم از ۷",
       title: "صدور سفته الکترونیکی",
       description:
-        "حالا باید از لندو سفته الکترونیکی تهیه کرده و آن را امضا کنید. پس از تهیه سفته از لندو، آن را در آینده ساین امضا کنید.",
+        "بدون نیاز به چک یا ضامن کارمند، سفته الکترونیکی را به صورت آنلاین از پنل کاربری لندو تهیه کرده و با امضای دیجیتال خود تایید کنید.",
       imgSrc: "https://s4.lendo.ir/lendo-static/lendo-v2/credit/step5-02.png",
-      linkText: "امضای دیجیتال",
-      linkHref: "#",
+      linkText: "آموزش خرید سفته",
+      linkHref: "#faq-section",
     },
     {
-      title: "امضای قراردادها",
+      stepBadge: "گام ششم از ۷",
+      title: "امضای آنلاین قراردادها",
       description:
-        "بعد از اینکه سفته شما توسط لندو بررسی و تایید شد، نوبت به مرحله امضای قرارداد می‌رسد. شما باید با امضای الکترونیکی خود، قراردادهای لندو و بانک را به صورت آنلاین امضا کنید.",
+        "بعد از اینکه سفته شما توسط لندو بررسی و تایید شد، نوبت به مرحله امضای قرارداد می‌رسد. قراردادهای لندو و بانک آینده را به صورت کاملاً آنلاین امضا کنید.",
       imgSrc: "https://s4.lendo.ir/lendo-static/lendo-v2/credit/step6-04.png",
-      linkText: "فعال‌سازی کارت",
-      linkHref: "#",
+      linkText: "فعال‌سازی وام کارت",
+      linkHref: "#calculator-section",
     },
     {
-      title: "تایید نهایی بانک و دریافت وام",
+      stepBadge: "گام هفتم از ۷",
+      title: "تایید نهایی بانک و دریافت وام کارت",
       description:
-        "در این مرحله درخواست وام شما توسط بانک نهایی می‌شود و وام لندو در قالب «وام کارت» در اختیارتان قرار می‌گیرد. حالا می‌توانید با وام خود خرید انواع کالا را از فروشگاه‌های طرف قرارداد انجام دهید و سپس اقساط آن را به لندو پرداخت کنید.",
+        "در این مرحله درخواست وام شما توسط بانک نهایی می‌شود و وام لندو در قالب «وام کارت» عضو شتاب در اختیارتان قرار می‌گیرد تا از سراسر کشور خرید کنید.",
       imgSrc: "https://s4.lendo.ir/lendo-static/lendo-v2/credit/step7-04.png",
-      linkText: "پرداخت قسط",
-      linkHref: "#",
+      linkText: "درخواست وام کارت",
+      linkHref: "#calculator-section",
     },
   ];
 
   let currentStage = 0;
   const stageTitles = document.querySelectorAll(".sec3-lvl h5");
+  const stageStepBadge = document.getElementById("stepCounterBadge");
   const stageTitle = document.querySelector(".sec3-des h3");
   const stageDescription = document.querySelector(".sec3-des h5");
   const stageLink = document.querySelector(".sec3-des a");
@@ -218,6 +338,13 @@ document.addEventListener("DOMContentLoaded", function () {
     ".sec3-box-btn .lucide-chevron-left",
   );
 
+  const arrowIconSVG = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left">
+      <path d="m12 19-7-7 7-7" />
+      <path d="M19 12H5" />
+    </svg>
+  `;
+
   function updateStage(index) {
     if (!stageTitle) return;
 
@@ -228,11 +355,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dots[index]) dots[index].classList.add("active");
 
     const data = stagesData[index];
+    if (stageStepBadge) stageStepBadge.textContent = data.stepBadge;
     stageTitle.textContent = data.title;
     stageDescription.textContent = data.description;
     if (stageImage) stageImage.src = data.imgSrc;
     if (stageLink) {
-      stageLink.textContent = data.linkText;
+      stageLink.innerHTML = `<span>${data.linkText}</span> ${arrowIconSVG}`;
       stageLink.href = data.linkHref;
     }
   }
@@ -270,17 +398,23 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ==========================================
-  // ۳. محاسبه‌گر اقساط وام (Section 5)
+  // ۳. محاسبه‌گر اقساط وام (Section 5) با انتخابگر مدت بازپرداخت (۶، ۹، ۱۲ ماه)
   // ==========================================
   const loanRange = document.getElementById("range3");
   const amountDisplay = document.getElementById("loanAmountDisplay");
+  const repaymentPeriodDisplay = document.getElementById("repaymentPeriod");
   const monthlyDisplay = document.getElementById("monthlyInstallment");
   const totalDisplay = document.getElementById("totalRepayment");
   const increaseBtn = document.getElementById("increaseAmount");
   const decreaseBtn = document.getElementById("decreaseAmount");
+  const durationPills = document.querySelectorAll(".duration-pill");
 
-  const interestRate = 0.1289;
-  const months = 12;
+  let selectedMonths = 12;
+  const interestRatesByMonth = {
+    6: 0.068,
+    9: 0.098,
+    12: 0.1289,
+  };
 
   function formatNumber(num) {
     return new Intl.NumberFormat("fa-IR").format(num);
@@ -288,31 +422,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function calculateLoan() {
     if (!loanRange) return;
-    const amount = parseInt(loanRange.value, 10) || 0;
+    const min = parseInt(loanRange.min, 10) || 20000000;
+    const max = parseInt(loanRange.max, 10) || 50000000;
+    let amount = parseInt(loanRange.value, 10) || 50000000;
+    amount = Math.max(min, Math.min(max, amount));
 
     if (amountDisplay) amountDisplay.textContent = formatNumber(amount);
+    if (repaymentPeriodDisplay)
+      repaymentPeriodDisplay.textContent = formatNumber(selectedMonths);
 
-    const totalPayable = Math.round(amount * (1 + interestRate));
-    const monthlyInstallment = Math.round(totalPayable / months);
+    const rate = interestRatesByMonth[selectedMonths] || 0.1289;
+    const totalPayable = Math.round(amount * (1 + rate));
+    const monthlyInstallment = Math.round(totalPayable / selectedMonths);
 
     if (monthlyDisplay)
       monthlyDisplay.textContent = formatNumber(monthlyInstallment);
     if (totalDisplay) totalDisplay.textContent = formatNumber(totalPayable);
   }
 
+  durationPills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      durationPills.forEach((p) => p.classList.remove("active"));
+      pill.classList.add("active");
+      selectedMonths = parseInt(pill.dataset.months, 10) || 12;
+      calculateLoan();
+    });
+  });
+
   if (loanRange) {
     loanRange.addEventListener("input", calculateLoan);
 
     if (increaseBtn) {
       increaseBtn.addEventListener("click", () => {
-        loanRange.value = parseInt(loanRange.value, 10) + 1000000;
+        const max = parseInt(loanRange.max, 10) || 50000000;
+        const nextVal = Math.min(max, parseInt(loanRange.value, 10) + 1000000);
+        loanRange.value = nextVal;
         calculateLoan();
       });
     }
 
     if (decreaseBtn) {
       decreaseBtn.addEventListener("click", () => {
-        loanRange.value = parseInt(loanRange.value, 10) - 1000000;
+        const min = parseInt(loanRange.min, 10) || 20000000;
+        const prevVal = Math.max(min, parseInt(loanRange.value, 10) - 1000000);
+        loanRange.value = prevVal;
         calculateLoan();
       });
     }
@@ -339,7 +492,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // فعال‌سازی با کیبورد (Enter/Space) برای المان‌های سفارشی role="button"
   document.querySelectorAll('[role="button"][tabindex]').forEach((el) => {
     el.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
@@ -353,6 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ۵. سیستم ورودی کاربر و مدیریت Session
   // ==========================================
   const headerLoginBtn = document.getElementById("headerLoginBtn");
+  const drawerLoginBtn = document.getElementById("drawerLoginBtn");
   const userProfileDropdown = document.getElementById("userProfileDropdown");
   const profileBtn = document.getElementById("profileBtn");
   const dropdownMenu = document.getElementById("dropdownMenu");
@@ -368,7 +521,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const registerFormModal = document.getElementById("registerFormModal");
   const authAlert = document.getElementById("authAlert");
 
-  // بررسی وضعیت لاگین از LocalStorage هنگام بارگذاری صفحه
   function checkAuthStatus() {
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (loggedInUser) {
@@ -378,14 +530,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (userNameDisplay) userNameDisplay.textContent = loggedInUser;
       if (menuUsername) menuUsername.textContent = loggedInUser;
     } else {
-      if (headerLoginBtn) headerLoginBtn.style.display = "inline-block";
+      if (headerLoginBtn) headerLoginBtn.style.display = "inline-flex";
       if (userProfileDropdown) userProfileDropdown.style.display = "none";
     }
 
     if (typeof updateRequestsBadge === "function") updateRequestsBadge();
   }
 
-  // باز/بسته کردن منوی دراپ‌داون پروفایل
   if (profileBtn && dropdownMenu) {
     profileBtn.addEventListener("click", () => {
       dropdownMenu.classList.toggle("show");
@@ -400,27 +551,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // خروج از حساب کاربری
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("loggedInUser");
       checkAuthStatus();
       if (dropdownMenu) dropdownMenu.classList.remove("show");
+      showToast("از حساب کاربری خارج شدید");
     });
   }
 
-  // باز کردن مودال با کلیک روی دکمه ورود هدر
+  function openAuthModalWindow(e) {
+    if (e) e.preventDefault();
+    closeMobileDrawer();
+    if (authModal) {
+      authModal.classList.add("active");
+      hideAlert();
+    }
+  }
+
   if (headerLoginBtn) {
-    headerLoginBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (authModal) {
-        authModal.classList.add("active");
-        hideAlert();
-      }
-    });
+    headerLoginBtn.addEventListener("click", openAuthModalWindow);
+  }
+  if (drawerLoginBtn) {
+    drawerLoginBtn.addEventListener("click", openAuthModalWindow);
   }
 
-  // بستن مودال
   if (closeAuthModal) {
     closeAuthModal.addEventListener("click", () => {
       authModal.classList.remove("active");
@@ -435,7 +590,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // سوئیچ تب‌های ورود/ثبت‌نام
   if (loginTabBtn && registerTabBtn) {
     loginTabBtn.addEventListener("click", () => {
       loginTabBtn.classList.add("active");
@@ -467,14 +621,20 @@ document.addEventListener("DOMContentLoaded", function () {
     authAlert.className = "auth-alert";
   }
 
-  // --- بررسی فرم ورود ---
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const username = document.getElementById("loginUsername").value.trim();
       const password = document.getElementById("loginPassword").value.trim();
 
-      if (username === "admin" && password === "admin") {
+      const registeredUsers = JSON.parse(
+        localStorage.getItem("lendoRegisteredUsers") || "{}",
+      );
+
+      if (
+        (username === "admin" && password === "admin") ||
+        (registeredUsers[username] && registeredUsers[username] === password)
+      ) {
         showAlert("با موفقیت وارد شدید!", "success");
         localStorage.setItem("loggedInUser", username);
 
@@ -483,14 +643,17 @@ document.addEventListener("DOMContentLoaded", function () {
           loginForm.reset();
           hideAlert();
           checkAuthStatus();
-        }, 1200);
+          showToast(`خوش آمدید، ${username} عزیز! 👋`);
+        }, 900);
       } else {
-        showAlert("نام کاربری یا رمز عبور اشتباه است.", "error");
+        showAlert(
+          "نام کاربری یا رمز عبور اشتباه است. (دمو: admin / admin)",
+          "error",
+        );
       }
     });
   }
 
-  // --- بررسی فرم ثبت‌نام ---
   if (registerFormModal) {
     registerFormModal.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -515,6 +678,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      const registeredUsers = JSON.parse(
+        localStorage.getItem("lendoRegisteredUsers") || "{}",
+      );
+      registeredUsers[username] = password;
+      localStorage.setItem(
+        "lendoRegisteredUsers",
+        JSON.stringify(registeredUsers),
+      );
+
       showAlert("ثبت‌نام با موفقیت انجام شد!", "success");
       localStorage.setItem("loggedInUser", username);
 
@@ -523,7 +695,8 @@ document.addEventListener("DOMContentLoaded", function () {
         registerFormModal.reset();
         hideAlert();
         checkAuthStatus();
-      }, 1200);
+        showToast(`حساب کاربری ${username} با موفقیت ساخته شد 🎉`);
+      }, 900);
     });
   }
 
@@ -539,12 +712,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const requestsBadge = document.getElementById("requestsBadge");
   const toastNotification = document.getElementById("toastNotification");
 
-  // گرفتن نام کاربر لاگین‌شده
   function getCurrentUser() {
     return localStorage.getItem("loggedInUser");
   }
 
-  // هر کاربر، سبد درخواست‌های جداگانه خودش رو داره
   function getRequestsStorageKey() {
     const user = getCurrentUser();
     return user ? `lendoLoanRequests_${user}` : null;
@@ -566,7 +737,6 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem(key, JSON.stringify(list));
   }
 
-  // نمایش نوتیف
   let toastTimeout = null;
   function showToast(message, type = "success") {
     if (!toastNotification) return;
@@ -575,22 +745,20 @@ document.addEventListener("DOMContentLoaded", function () {
     clearTimeout(toastTimeout);
     toastTimeout = setTimeout(() => {
       toastNotification.classList.remove("show");
-    }, 2800);
+    }, 3000);
   }
 
-  // به‌روزرسانی شمارنده کنار «درخواست‌های من»
   function updateRequestsBadge() {
     if (!requestsBadge) return;
     const count = getLoanRequests().length;
     if (count > 0) {
-      requestsBadge.textContent = count;
+      requestsBadge.textContent = formatNumber(count);
       requestsBadge.style.display = "inline-flex";
     } else {
       requestsBadge.style.display = "none";
     }
   }
 
-  // ساخت HTML یک کارت درخواست
   function buildRequestCardHTML(req) {
     return `
       <div class="request-card" data-id="${req.id}">
@@ -601,7 +769,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <span class="request-status">${req.status}</span>
         </div>
         <div class="request-card-details">
-          <span>مدت بازپرداخت: <strong>${req.months} ماه</strong></span>
+          <span>مدت بازپرداخت: <strong>${formatNumber(req.months)} ماه</strong></span>
           <span>قسط ماهیانه: <strong>${formatNumber(req.monthly)} تومان</strong></span>
         </div>
         <div class="request-card-footer">
@@ -614,7 +782,6 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   }
 
-  // رندر کردن لیست درخواست‌ها داخل مودال
   function renderRequestsList() {
     if (!requestsList || !requestsEmpty) return;
     const requests = getLoanRequests();
@@ -633,20 +800,20 @@ document.addEventListener("DOMContentLoaded", function () {
       .join("");
   }
 
-  // افزودن یک درخواست جدید وام
   function addLoanRequest() {
     if (!loanRange) return;
 
     const amount = parseInt(loanRange.value, 10) || 0;
-    const totalPayable = Math.round(amount * (1 + interestRate));
-    const monthly = Math.round(totalPayable / months);
+    const rate = interestRatesByMonth[selectedMonths] || 0.1289;
+    const totalPayable = Math.round(amount * (1 + rate));
+    const monthly = Math.round(totalPayable / selectedMonths);
 
     const newRequest = {
       id: Date.now().toString(),
       amount,
-      months,
+      months: selectedMonths,
       monthly,
-      status: "در حال بررسی",
+      status: "در انتظار بررسی مدارک",
       date: new Intl.DateTimeFormat("fa-IR", {
         year: "numeric",
         month: "long",
@@ -659,10 +826,9 @@ document.addEventListener("DOMContentLoaded", function () {
     saveLoanRequests(requests);
     updateRequestsBadge();
     renderRequestsList();
-    showToast("درخواست وام شما با موفقیت ثبت شد ✅");
+    showToast("درخواست وام شما با موفقیت در سبد وام ثبت شد ✅");
   }
 
-  // حذف یک درخواست از سبد
   function removeLoanRequest(id) {
     const requests = getLoanRequests().filter((r) => r.id !== id);
     saveLoanRequests(requests);
@@ -671,7 +837,6 @@ document.addEventListener("DOMContentLoaded", function () {
     showToast("درخواست موردنظر حذف شد", "error");
   }
 
-  // کلیک روی دکمه «درخواست وام» در سکشن ۵
   if (loanRequestBtn) {
     loanRequestBtn.addEventListener("click", () => {
       const currentUser = getCurrentUser();
@@ -689,7 +854,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // باز کردن مودال «درخواست‌های من»
   if (myRequestsBtn && myRequestsModal) {
     myRequestsBtn.addEventListener("click", () => {
       if (dropdownMenu) dropdownMenu.classList.remove("show");
@@ -699,7 +863,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // بستن مودال «درخواست‌های من»
   if (closeMyRequestsModal && myRequestsModal) {
     closeMyRequestsModal.addEventListener("click", () => {
       myRequestsModal.classList.remove("active");
@@ -714,7 +877,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // حذف درخواست با کلیک روی دکمه «انصراف»
   if (requestsList) {
     requestsList.addEventListener("click", (e) => {
       const btn = e.target.closest(".request-cancel-btn");
@@ -726,11 +888,23 @@ document.addEventListener("DOMContentLoaded", function () {
   checkAuthStatus();
 
   // ==========================================
-  // ۷. ویجت چت پشتیبانی آنلاین
+  // ۷. ویجت چت پشتیبانی آنلاین (تعاملی)
   // ==========================================
   const chatToggleBtn = document.getElementById("chatToggleBtn");
   const chatWidget = document.getElementById("chatWidget");
   const chatCloseBtn = document.getElementById("chatCloseBtn");
+  const chatBody = document.querySelector(".chat-body");
+
+  const botReplies = {
+    "راهنمایی وام حامی":
+      "طرح حامی لندو وامی فوری و بدون سود است که بر اساس رتبه اعتباری شما در کمتر از چند دقیقه به کارت بانکی‌تان واریز می‌شود.",
+    "اعتبارسنجی و مشاوره":
+      "برای اعتبارسنجی کافیست کد ملی و شماره موبایل به نام خودتان را در بخش «شروع اعتبارسنجی» وارد کنید تا رتبه اعتباری بانکی شما استعلام شود.",
+    "وام‌های بلند مدت":
+      "سقف وام‌های خرید کالای لندو تا ۵۰ میلیون تومان با بازپرداخت ۶، ۹ یا ۱۲ ماهه و تنها با سفته الکترونیکی (بدون ضامن) است.",
+    "ارتباط با کارشناس":
+      "کارشناسان مرکز تماس لندو همه‌روزه از ساعت ۸ الی ۲۰ از طریق شماره ۰۲۱-۹۱۰۱۲۹۷۹ آماده پاسخگویی به شما هستند.",
+  };
 
   if (chatToggleBtn && chatWidget && chatCloseBtn) {
     chatToggleBtn.addEventListener("click", () => {
@@ -739,6 +913,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     chatCloseBtn.addEventListener("click", () => {
       chatWidget.classList.remove("active");
+    });
+
+    document.querySelectorAll(".chat-options .option-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const questionText = btn.textContent.trim();
+        const replyText =
+          botReplies[questionText] ||
+          "پشتیبانان ما به‌زودی پاسخگوی شما خواهند بود.";
+
+        if (chatBody) {
+          const replyDiv = document.createElement("div");
+          replyDiv.className = "chat-message with-avatar";
+          replyDiv.innerHTML = `
+            <div class="chat-bubble text-bubble">
+              <p><strong>${questionText}:</strong></p>
+              <p>${replyText}</p>
+            </div>
+            <img
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=3"
+              alt="پشتیبان"
+              class="message-avatar"
+            />
+            <span class="chat-time">هم‌اکنون</span>
+          `;
+          chatBody.appendChild(replyDiv);
+          chatBody.scrollTo({ top: chatBody.scrollHeight, behavior: "smooth" });
+        }
+      });
     });
 
     document.addEventListener("click", (e) => {
