@@ -3,192 +3,246 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>شبیه‌سازی سایت لندو</title>
+    <title>لندو | سامانه خرید اقساطی و دریافت وام آنلاین بدون ضامن</title>
+    <meta
+      name="description"
+      content="لندو، سامانه آنلاین دریافت وام خرید کالا و خدمات بدون نیاز به چک و ضامن تنها با سفته الکترونیکی در سراسر کشور."
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
     />
-
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="Css/style.css" />
   </head>
   <body>
-    <header class="px-5 my-3">
-      <div class="navbar row">
-        <div class="navbar-right col-6">
-          <div class="logo">
-            <svg
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 110 26"
-              width="110"
-              height="26"
+    <!-- ==========================================
+         STICKY HEADER & NAVIGATION
+         ========================================== -->
+    <header class="site-header" id="siteHeader">
+      <div class="lendo-container">
+        <div class="navbar-wrapper">
+          <div class="navbar-right">
+            <!-- دکمه منوی همبرگری در موبایل و تبلت -->
+            <button
+              type="button"
+              class="mobile-menu-toggle"
+              id="mobileMenuToggle"
+              aria-label="باز کردن منوی اصلی"
             >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M104.784 5.00693V0H99.5679V10.014H110V5.00693H104.784Z"
-                fill="#0B2C6E"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M83.9189 15.0205V20.0274H89.1351V25.0342H94.3512V15.0205H83.9189Z"
-                fill="#0AC974"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M99.5684 15.0205V25.0342H104.784V20.0274H110V15.0205H99.5684Z"
-                fill="#0AC974"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M89.1356 5.00693H83.9194V10.014H94.3518V0H89.1356V5.00693Z"
-                fill="#0AC974"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M3.73169 6.56445H0V19.66C0 20.6342 0.82572 21.4239 1.84426 21.4239H11.8028V17.8546H3.73169V6.56445Z"
-                fill="#0B2C6E"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M38.1001 15.8337L32.088 7.61797C31.6047 6.95769 30.8152 6.56445 29.9727 6.56445H27.7725V21.424H31.504V12.1548L37.5163 20.3705C37.9995 21.0308 38.7891 21.424 39.6315 21.424H41.8318V6.56445H38.1001V15.8337Z"
-                fill="#0B2C6E"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M13.4951 19.6598C13.4951 20.6341 14.3208 21.4239 15.3394 21.4239H26.0792V17.8546H17.2268V15.7787H26.0792V12.2096H17.2268V10.1339H26.0792V6.56445H13.4951V19.6598Z"
-                fill="#0B2C6E"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M49.8163 17.8546H47.2557V10.1339H49.8163C52.0416 10.1339 53.8521 11.8657 53.8521 13.9942C53.8521 16.1228 52.0416 17.8546 49.8163 17.8546ZM49.6509 6.56445H43.5244V19.6598C43.5244 20.6341 44.3499 21.424 45.3685 21.424H49.8163C54.1772 21.424 57.7108 17.968 57.5802 13.769C57.4545 9.72809 53.8774 6.56445 49.6509 6.56445Z"
-                fill="#0B2C6E"
-              ></path>
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M66.3066 17.8546C64.0812 17.8546 62.2708 16.1228 62.2708 13.9942C62.2708 11.8657 64.0812 10.1339 66.3066 10.1339C68.5319 10.1339 70.3424 11.8657 70.3424 13.9942C70.3424 16.1228 68.5319 17.8546 66.3066 17.8546ZM66.3066 6.56445C62.0238 6.56445 58.5391 9.89752 58.5391 13.9942C58.5391 18.0908 62.0238 21.424 66.3066 21.424C70.5894 21.424 74.0738 18.0908 74.0738 13.9942C74.0738 9.89752 70.5894 6.56445 66.3066 6.56445Z"
-                fill="#0B2C6E"
-              ></path>
-            </svg>
-          </div>
-          <nav class="navbar-menu" aria-label="منوی اصلی">
-            <ul>
-              <li>
-                وام های لندو
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-chevron-down"
-                  >
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
-                </span>
-              </li>
-              <li>اعتبارسنجی</li>
-              <li>چطور وام بگیرم؟</li>
-              <li>راهنما</li>
-              <li>بلاگ</li>
-            </ul>
-          </nav>
-        </div>
-
-        <!-- سمت چپ هدر (مدیریت ورود / پروفایل) -->
-        <div
-          class="navbar-left col-6 col-lg-4 d-flex justify-content-end align-items-center p-0"
-        >
-          <button
-            class="theme-toggle-btn"
-            id="themeToggleBtn"
-            type="button"
-            aria-label="تغییر تم روشن و تاریک"
-          >
-            <svg
-              class="icon-sun"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="12" cy="12" r="4"></circle>
-              <path
-                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
-              ></path>
-            </svg>
-            <svg
-              class="icon-moon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
-
-          <div class="user-auth-area">
-            <button class="login-btn" id="headerLoginBtn">
-              ورود / ثبت نام
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="4" x2="20" y1="6" y2="6" />
+                <line x1="4" x2="20" y1="12" y2="12" />
+                <line x1="4" x2="20" y1="18" y2="18" />
+              </svg>
             </button>
 
-            <div
-              class="user-profile-dropdown"
-              id="userProfileDropdown"
-              style="display: none"
+            <a href="#" class="logo" aria-label="صفحه اصلی لندو">
+              <svg
+                focusable="false"
+                aria-hidden="true"
+                viewBox="0 0 110 26"
+                width="110"
+                height="26"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M104.784 5.00693V0H99.5679V10.014H110V5.00693H104.784Z"
+                  fill="#0B2C6E"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M83.9189 15.0205V20.0274H89.1351V25.0342H94.3512V15.0205H83.9189Z"
+                  fill="#0AC974"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M99.5684 15.0205V25.0342H104.784V20.0274H110V15.0205H99.5684Z"
+                  fill="#0AC974"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M89.1356 5.00693H83.9194V10.014H94.3518V0H89.1356V5.00693Z"
+                  fill="#0AC974"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M3.73169 6.56445H0V19.66C0 20.6342 0.82572 21.4239 1.84426 21.4239H11.8028V17.8546H3.73169V6.56445Z"
+                  fill="#0B2C6E"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M38.1001 15.8337L32.088 7.61797C31.6047 6.95769 30.8152 6.56445 29.9727 6.56445H27.7725V21.424H31.504V12.1548L37.5163 20.3705C37.9995 21.0308 38.7891 21.424 39.6315 21.424H41.8318V6.56445H38.1001V15.8337Z"
+                  fill="#0B2C6E"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M13.4951 19.6598C13.4951 20.6341 14.3208 21.4239 15.3394 21.4239H26.0792V17.8546H17.2268V15.7787H26.0792V12.2096H17.2268V10.1339H26.0792V6.56445H13.4951V19.6598Z"
+                  fill="#0B2C6E"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M49.8163 17.8546H47.2557V10.1339H49.8163C52.0416 10.1339 53.8521 11.8657 53.8521 13.9942C53.8521 16.1228 52.0416 17.8546 49.8163 17.8546ZM49.6509 6.56445H43.5244V19.6598C43.5244 20.6341 44.3499 21.424 45.3685 21.424H49.8163C54.1772 21.424 57.7108 17.968 57.5802 13.769C57.4545 9.72809 53.8774 6.56445 49.6509 6.56445Z"
+                  fill="#0B2C6E"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M66.3066 17.8546C64.0812 17.8546 62.2708 16.1228 62.2708 13.9942C62.2708 11.8657 64.0812 10.1339 66.3066 10.1339C68.5319 10.1339 70.3424 11.8657 70.3424 13.9942C70.3424 16.1228 68.5319 17.8546 66.3066 17.8546ZM66.3066 6.56445C62.0238 6.56445 58.5391 9.89752 58.5391 13.9942C58.5391 18.0908 62.0238 21.424 66.3066 21.424C70.5894 21.424 74.0738 18.0908 74.0738 13.9942C74.0738 9.89752 70.5894 6.56445 66.3066 6.56445Z"
+                  fill="#0B2C6E"
+                ></path>
+              </svg>
+            </a>
+
+            <nav class="navbar-menu" aria-label="منوی اصلی">
+              <ul>
+                <li>
+                  <a href="#calculator-section">
+                    وام‌های لندو
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </a>
+                </li>
+                <li><a href="#steps-section">اعتبارسنجی</a></li>
+                <li><a href="#steps-section">چطور وام بگیرم؟</a></li>
+                <li><a href="#hami-section">طرح حامی</a></li>
+                <li><a href="#lendoland-section">لندولند</a></li>
+                <li><a href="#faq-section">سوالات متداول</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- سمت چپ هدر (تغییر تم + ورود / پروفایل) -->
+          <div class="navbar-left">
+            <button
+              class="theme-toggle-btn"
+              id="themeToggleBtn"
+              type="button"
+              aria-label="تغییر تم روشن و تاریک"
             >
-              <button class="profile-btn" id="profileBtn">
-                <span class="user-avatar">👤</span>
-                <span id="userNameDisplay">کاربر گرامی</span>
-                <span class="arrow-icon">▼</span>
+              <svg
+                class="icon-sun"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                  d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                ></path>
+              </svg>
+              <svg
+                class="icon-moon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+            </button>
+
+            <div class="user-auth-area">
+              <button class="login-btn" id="headerLoginBtn" type="button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <span>ورود <span class="login-text-full">/ ثبت‌نام</span></span>
               </button>
 
-              <div class="dropdown-menu" id="dropdownMenu">
-                <div class="menu-header">
-                  <strong id="menuUsername">admin</strong>
-                  <small>خوش آمدید!</small>
-                </div>
-                <hr />
-                <button type="button" class="menu-item" id="myRequestsBtn">
-                  <span>📋</span> درخواست‌های من
-                  <span
-                    class="requests-badge"
-                    id="requestsBadge"
-                    style="display: none"
-                    >0</span
+              <div
+                class="user-profile-dropdown"
+                id="userProfileDropdown"
+                style="display: none"
+              >
+                <button class="profile-btn" id="profileBtn" type="button">
+                  <span class="user-avatar">👤</span>
+                  <span id="userNameDisplay">کاربر گرامی</span>
+                  <span class="arrow-icon">▼</span>
+                </button>
+
+                <div class="dropdown-menu" id="dropdownMenu">
+                  <div class="menu-header">
+                    <strong id="menuUsername">admin</strong>
+                    <small>خوش آمدید!</small>
+                  </div>
+                  <hr />
+                  <button type="button" class="menu-item" id="myRequestsBtn">
+                    <span>📋</span> درخواست‌های من
+                    <span
+                      class="requests-badge"
+                      id="requestsBadge"
+                      style="display: none"
+                      >۰</span
+                    >
+                  </button>
+                  <a href="#calculator-section" class="menu-item"
+                    ><span>💳</span> محاسبه و درخواست وام</a
                   >
-                </button>
-                <a href="#" class="menu-item"><span>💳</span> کیف پول</a>
-                <a href="#" class="menu-item"><span>⚙️</span> تنظیمات حساب</a>
-                <hr />
-                <button class="menu-item logout-btn" id="logoutBtn">
-                  <span>🚪</span> خروج از حساب
-                </button>
+                  <a href="#faq-section" class="menu-item"
+                    ><span>⚙️</span> راهنمای کاربری</a
+                  >
+                  <hr />
+                  <button
+                    class="menu-item logout-btn"
+                    id="logoutBtn"
+                    type="button"
+                  >
+                    <span>🚪</span> خروج از حساب
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -196,264 +250,417 @@
       </div>
     </header>
 
+    <!-- ==========================================
+         MOBILE NAVIGATION DRAWER (OFF-CANVAS)
+         ========================================== -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <aside
+      class="mobile-nav-drawer"
+      id="mobileNavDrawer"
+      aria-label="منوی موبایل"
+    >
+      <div class="mobile-drawer-header">
+        <span style="font-weight: 800; color: var(--text-heading)"
+          >منوی دسترسی لندو</span
+        >
+        <button
+          type="button"
+          class="drawer-close-btn"
+          id="closeDrawerBtn"
+          aria-label="بستن منو"
+        >
+          &times;
+        </button>
+      </div>
+      <ul class="mobile-drawer-links">
+        <li>
+          <a href="#calculator-section">
+            <span>وام‌های لندو و محاسبه اقساط</span>
+            <span>←</span>
+          </a>
+        </li>
+        <li>
+          <a href="#steps-section">
+            <span>مراحل دریافت وام (۷ گام)</span>
+            <span>←</span>
+          </a>
+        </li>
+        <li>
+          <a href="#hami-section">
+            <span>طرح فوری حامی (بدون سود)</span>
+            <span>←</span>
+          </a>
+        </li>
+        <li>
+          <a href="#lendoland-section">
+            <span>باشگاه مشتریان لندولند</span>
+            <span>←</span>
+          </a>
+        </li>
+        <li>
+          <a href="#faq-section">
+            <span>سوالات متداول</span>
+            <span>←</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <button type="button" class="mobile-drawer-cta" id="drawerLoginBtn">
+          ورود / ثبت‌نام در حساب کاربری
+        </button>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         MAIN CONTENT
+         ========================================== -->
     <main>
-      <section class="hero">
-        <div class="lendo-slider">
-          <button class="nav-btn prev" id="prevBtn"></button>
-          <button class="nav-btn next" id="nextBtn"></button>
-
-          <div class="slides-container" id="slidesContainer"></div>
-        </div>
-      </section>
-
-      <section class="sec2">
-        <div class="sec2-boxs row mx-auto my-5">
-          <div class="sec2-box1 col-12 col-md-6 col-lg-3 text-center">
-            <img
-              class="img-fluid mb-2"
-              style="width: 60px"
-              src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2FfeaturesIcon%2FwarrantyIcon.svg&w=256&q=75"
-              alt="warranty"
-            />
-            <p>بدون چک و ضامن</p>
-          </div>
-
-          <!-- باکس ۲ -->
-          <div class="sec2-box2 col-12 col-md-6 col-lg-3 text-center">
-            <img
-              class="img-fluid mb-2"
-              style="width: 60px"
-              src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2FfeaturesIcon%2FonlineProccessIcon.svg&w=256&q=75"
-              alt="online"
-            />
-            <p>فرایند کاملا آنلاین</p>
-          </div>
-
-          <!-- باکس ۳ -->
-          <div class="sec2-box3 col-12 col-md-6 col-lg-3 text-center">
-            <img
-              class="img-fluid mb-2"
-              style="width: 60px"
-              src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2FfeaturesIcon%2FshoppingCardIcon.svg&w=256&q=75"
-              alt="shopping-card"
-            />
-            <p>ارائه وام در کارت خرید</p>
-          </div>
-
-          <!-- باکس ۴ -->
-          <div class="sec2-box4 col-12 col-md-6 col-lg-3 text-center">
-            <img
-              class="img-fluid mb-2"
-              style="width: 60px"
-              src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2FfeaturesIcon%2FMapIcon.svg&w=256&q=75"
-              alt="map"
-            />
-            <p>پوشش کل کشور</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="sec3 w-100 mt-5">
-        <div class="px-5">
-          <div class="sec3-boxs row">
-            <div class="sec3-box1 col-12 col-md-6">
-              <h2 class="sec3-title mb-4">
-                <span class="lendo-accent"></span>
-                مراحل دریافت وام از لندو
-              </h2>
-              <div class="sec3-lvl row my-5">
-                <h5 class="col" tabindex="0" role="button">مرحله1</h5>
-                <h5 class="col" tabindex="0" role="button">مرحله2</h5>
-                <h5 class="col" tabindex="0" role="button">مرحله3</h5>
-                <h5 class="col" tabindex="0" role="button">مرحله4</h5>
-                <h5 class="col" tabindex="0" role="button">مرحله5</h5>
-                <h5 class="col" tabindex="0" role="button">مرحله6</h5>
-                <h5 class="col" tabindex="0" role="button">مرحله7</h5>
-              </div>
-              <div class="sec3-des">
-                <h3 class="mb-4">اعتبارسنجی</h3>
-                <h5 class="mb-4">
-                  ابتدا لازم است با انجام اعتبارسنجی بانکی، رتبه اعتباری خود را
-                  بررسی کنید. این رتبه به شما نشان می‌دهد که شرایط دریافت وام
-                  لندو را دارید و با توجه به آن، مشخص می‌شود که کدام وام‌ها برای
-                  شما قابل دریافت هستند.
-                </h5>
-                <a href=""
-                  >اعتبارسنجی
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#0082fd"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-arrow-left-icon lucide-arrow-left"
-                  >
-                    <path d="m12 19-7-7 7-7" />
-                    <path d="M19 12H5" /></svg
-                ></a>
-              </div>
-            </div>
-            <div
-              class="sec3-box2 col-12 col-md-6 d-flex justify-content-end position-relative"
+      <!-- ۱. اسلایدر اصلی (Hero Slider) -->
+      <section class="hero" id="hero-section">
+        <div class="lendo-container">
+          <div class="lendo-slider">
+            <button
+              class="nav-btn prev"
+              id="prevBtn"
+              type="button"
+              aria-label="اسلاید قبلی"
             >
-              <div class="sec3-img">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+            <button
+              class="nav-btn next"
+              id="nextBtn"
+              type="button"
+              aria-label="اسلاید بعدی"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+
+            <div class="slides-container" id="slidesContainer"></div>
+            <div class="slider-dots" id="sliderDots"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ۲. ویژگی‌های کلیدی لندو (Section 2) -->
+      <section class="sec2" id="features-section">
+        <div class="lendo-container">
+          <div class="sec2-boxs">
+            <div class="feature-card">
+              <div class="feature-icon-wrap">
                 <img
-                  src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fcredit%2Fstep1-04.png&w=1080&q=75"
-                  alt=""
+                  src="https://s4.lendo.ir/lendo-static/lendo-v2/home/featuresIcon/warrantyIcon.svg"
+                  alt="بدون چک و ضامن"
                 />
               </div>
-              <div class="sec3-box-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="33"
-                  height="33"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-chevron-right-icon lucide-chevron-right sec3-icon"
-                  tabindex="0"
-                  role="button"
-                  aria-label="مرحله قبل"
-                >
-                  <path d="m9 18 6-6-6-6" />
-                </svg>
-                <span
-                  class="sec3-dot"
-                  tabindex="0"
-                  role="button"
-                  aria-label="نمایش این مرحله"
-                ></span>
-                <span
-                  class="sec3-dot"
-                  tabindex="0"
-                  role="button"
-                  aria-label="نمایش این مرحله"
-                ></span>
-                <span
-                  class="sec3-dot"
-                  tabindex="0"
-                  role="button"
-                  aria-label="نمایش این مرحله"
-                ></span>
-                <span
-                  class="sec3-dot"
-                  tabindex="0"
-                  role="button"
-                  aria-label="نمایش این مرحله"
-                ></span>
-                <span
-                  class="sec3-dot"
-                  tabindex="0"
-                  role="button"
-                  aria-label="نمایش این مرحله"
-                ></span>
-                <span
-                  class="sec3-dot"
-                  tabindex="0"
-                  role="button"
-                  aria-label="نمایش این مرحله"
-                ></span>
-                <span
-                  class="sec3-dot"
-                  tabindex="0"
-                  role="button"
-                  aria-label="نمایش این مرحله"
-                ></span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="33"
-                  height="33"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-chevron-left-icon lucide-chevron-left sec3-icon"
-                  tabindex="0"
-                  role="button"
-                  aria-label="مرحله بعد"
-                >
-                  <path d="m15 18-6-6 6-6" />
-                </svg>
+              <p>بدون چک و ضامن</p>
+              <span class="feature-sub">تنها با سفته الکترونیکی</span>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrap">
+                <img
+                  src="https://s4.lendo.ir/lendo-static/lendo-v2/home/featuresIcon/onlineProccessIcon.svg"
+                  alt="فرایند کاملا آنلاین"
+                />
               </div>
+              <p>فرآیند کاملاً آنلاین</p>
+              <span class="feature-sub">از ثبت‌نام تا دریافت وام</span>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrap">
+                <img
+                  src="https://s4.lendo.ir/lendo-static/lendo-v2/home/featuresIcon/shoppingCardIcon.svg"
+                  alt="ارائه وام در کارت خرید"
+                />
+              </div>
+              <p>ارائه وام در کارت خرید</p>
+              <span class="feature-sub">وام کارت عضو شبکه شتاب</span>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon-wrap">
+                <img
+                  src="https://s4.lendo.ir/lendo-static/lendo-v2/home/featuresIcon/MapIcon.svg"
+                  alt="پوشش کل کشور"
+                />
+              </div>
+              <p>پوشش کل کشور</p>
+              <span class="feature-sub">ارسال رایگان به تمام شهرها</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="sec4 mt-5">
-        <div class="sec4-box px-5">
-          <img
-            class="w-100 mt-5"
-            src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2FhomeDocumentBanner.svg&w=1920&q=75"
-            alt=""
-          />
-        </div>
-      </section>
+      <!-- ۳. مراحل دریافت وام (Section 3) -->
+      <section class="sec3" id="steps-section">
+        <div class="lendo-container">
+          <div class="sec3-card">
+            <div class="sec3-boxs row g-4 align-items-center">
+              <div class="sec3-box1 col-12 col-lg-6">
+                <h2 class="sec3-title">
+                  <span class="lendo-accent"></span>
+                  مراحل دریافت وام از لندو
+                </h2>
 
-      <section class="sec5">
-        <div class="sec5-bigbox">
-          <div class="sec5-title">
-            <span>
-              وام
-              <span class="title-img">
-                <img
-                  src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2FNeon.50.png&w=128&q=75"
-                  alt=""
-                />
-              </span>
-              میلیون تومانی
-            </span>
-            <hr />
-            <span>بدون چک و ضامن</span>
-          </div>
-          <div class="sec5-boxs">
-            <div class="sec5-box1">
-              <div class="sec5-box1-1">
-                <div class="d-flex justify-content-between">
-                  <h2>نمایشگر اقساط</h2>
-                  <a
-                    >راهنمای درخواست وام
+                <div
+                  class="sec3-lvl"
+                  role="tablist"
+                  aria-label="مراحل دریافت وام"
+                >
+                  <h5 tabindex="0" role="button">مرحله ۱</h5>
+                  <h5 tabindex="0" role="button">مرحله ۲</h5>
+                  <h5 tabindex="0" role="button">مرحله ۳</h5>
+                  <h5 tabindex="0" role="button">مرحله ۴</h5>
+                  <h5 tabindex="0" role="button">مرحله ۵</h5>
+                  <h5 tabindex="0" role="button">مرحله ۶</h5>
+                  <h5 tabindex="0" role="button">مرحله ۷</h5>
+                </div>
+
+                <div class="sec3-des">
+                  <span class="step-counter-badge" id="stepCounterBadge"
+                    >گام اول از ۷</span
+                  >
+                  <h3>اعتبارسنجی بانکی</h3>
+                  <h5>
+                    ابتدا لازم است با انجام اعتبارسنجی بانکی، رتبه اعتباری خود
+                    را بررسی کنید. این رتبه به شما نشان می‌دهد که شرایط دریافت
+                    وام لندو را دارید و با توجه به آن، مشخص می‌شود که کدام
+                    وام‌ها برای شما قابل دریافت هستند.
+                  </h5>
+                  <a href="#calculator-section" class="cta-inline-link">
+                    <span>شروع اعتبارسنجی</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
+                      width="20"
+                      height="20"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke="#0082fd"
-                      stroke-width="2"
+                      stroke="currentColor"
+                      stroke-width="2.2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       class="lucide lucide-arrow-left-icon lucide-arrow-left"
                     >
-                      <path d="m12 19-7-7 7-7"></path>
-                      <path d="M19 12H5"></path></svg
-                  ></a>
+                      <path d="m12 19-7-7 7-7" />
+                      <path d="M19 12H5" />
+                    </svg>
+                  </a>
                 </div>
-                <p>
-                  قبل از درخواست وام , از جزئیات وام و اقساط ماهانه آن مطلع
-                  شوید.
-                </p>
+              </div>
+
+              <div class="sec3-box2 col-12 col-lg-6">
+                <div class="sec3-img">
+                  <img
+                    src="https://s4.lendo.ir/lendo-static/lendo-v2/credit/step1-04.png"
+                    alt="تصویر مراحل دریافت وام لندو"
+                  />
+                </div>
+                <div class="sec3-box-btn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-chevron-right-icon lucide-chevron-right sec3-icon"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله قبل"
+                  >
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                  <span
+                    class="sec3-dot"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله ۱"
+                  ></span>
+                  <span
+                    class="sec3-dot"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله ۲"
+                  ></span>
+                  <span
+                    class="sec3-dot"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله ۳"
+                  ></span>
+                  <span
+                    class="sec3-dot"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله ۴"
+                  ></span>
+                  <span
+                    class="sec3-dot"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله ۵"
+                  ></span>
+                  <span
+                    class="sec3-dot"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله ۶"
+                  ></span>
+                  <span
+                    class="sec3-dot"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله ۷"
+                  ></span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-chevron-left-icon lucide-chevron-left sec3-icon"
+                    tabindex="0"
+                    role="button"
+                    aria-label="مرحله بعد"
+                  >
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                </div>
               </div>
             </div>
-            <div class="sec5-box2">
-              <!-- بخش کنترل مبلغ وام -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ۴. بنر مدارک مورد نیاز (Section 4) -->
+      <section class="sec4">
+        <div class="lendo-container">
+          <div class="sec4-box">
+            <a href="#faq-section" aria-label="مدارک مورد نیاز دریافت وام">
+              <img
+                src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2FhomeDocumentBanner.svg&w=1920&q=75"
+                alt="مدارک لازم برای دریافت وام از لندو"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ۵. محاسبه‌گر هوشمند اقساط وام (Section 5) -->
+      <section class="sec5" id="calculator-section">
+        <div class="lendo-container">
+          <div class="sec5-bigbox">
+            <div class="sec5-title">
+              <span>
+                وام تا
+                <span class="title-img">
+                  <img
+                    src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2FNeon.50.png&w=128&q=75"
+                    alt="۵۰"
+                  />
+                </span>
+                میلیون تومانی
+              </span>
+              <hr />
+              <span>بدون چک و ضامن • با سفته الکترونیکی</span>
+            </div>
+
+            <div class="sec5-boxs">
+              <div class="calc-header">
+                <div>
+                  <h2>نمایشگر هوشمند اقساط</h2>
+                  <p>
+                    قبل از ثبت درخواست، مبلغ وام و مدت بازپرداخت را تنظیم و
+                    جزئیات اقساط ماهانه را مشاهده کنید.
+                  </p>
+                </div>
+                <a href="#steps-section" class="cta-inline-link">
+                  <span>راهنمای درخواست وام</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- انتخابگر مدت بازپرداخت -->
+              <div class="duration-selector">
+                <span class="duration-selector-label"
+                  >انتخاب مدت بازپرداخت:</span
+                >
+                <div class="duration-pills">
+                  <button type="button" class="duration-pill" data-months="6">
+                    ۶ ماهه
+                  </button>
+                  <button type="button" class="duration-pill" data-months="9">
+                    ۹ ماهه
+                  </button>
+                  <button
+                    type="button"
+                    class="duration-pill active"
+                    data-months="12"
+                  >
+                    ۱۲ ماهه
+                  </button>
+                </div>
+              </div>
+
+              <!-- کنترل مبلغ وام -->
               <div class="sec5-box2">
-                <div class="sec5-box2-1 d-flex justify-content-between">
-                  <button type="button" id="increaseAmount">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <div class="sec5-box2-1">
+                  <button
+                    type="button"
+                    id="increaseAmount"
+                    aria-label="افزایش مبلغ وام"
+                  >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                       <path
                         d="M12 5V19M5 12H19"
                         stroke="currentColor"
-                        stroke-width="2"
+                        stroke-width="2.4"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       />
@@ -461,16 +668,20 @@
                   </button>
 
                   <span class="box2-1-span">
-                    <span id="loanAmountDisplay">50,000,000</span>
+                    <span id="loanAmountDisplay">۵۰,۰۰۰,۰۰۰</span>
                     <span class="box2-1-span2">تومان</span>
                   </span>
 
-                  <button type="button" id="decreaseAmount">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <button
+                    type="button"
+                    id="decreaseAmount"
+                    aria-label="کاهش مبلغ وام"
+                  >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                       <path
                         d="M5 12H19"
                         stroke="currentColor"
-                        stroke-width="2"
+                        stroke-width="2.4"
                         stroke-linecap="round"
                         stroke-linejoin="round"
                       />
@@ -487,59 +698,70 @@
                     step="1000000"
                     value="50000000"
                     id="range3"
+                    aria-label="انتخاب مبلغ وام"
                   />
                   <div class="max-min d-flex justify-content-between">
-                    <span>50 میلیون تومان</span>
-                    <span>20 میلیون تومان</span>
+                    <span>۵۰ میلیون تومان</span>
+                    <span>۳۵ میلیون تومان</span>
+                    <span>۲۰ میلیون تومان</span>
                   </div>
                 </div>
 
-                <div class="sec5-box2-3 row mt-4 align-items-stretch">
-                  <div class="sec5-right-col col-12 col-md-6">
-                    <div class="loan-info-item d-flex justify-content-between">
+                <!-- خلاصه محاسبه و دکمه ثبت درخواست -->
+                <div class="calc-summary-grid">
+                  <div class="loan-stats-list">
+                    <div class="loan-info-item">
                       <p class="right-text1">مدت بازپرداخت:</p>
                       <p class="right-text2">
-                        <span id="repaymentPeriod">12</span>
+                        <span id="repaymentPeriod">۱۲</span>
                         <span class="right-text3">ماه</span>
                       </p>
                     </div>
-                    <div class="loan-info-item d-flex justify-content-between">
+                    <div class="loan-info-item">
                       <p class="right-text1">قسط ماهیانه:</p>
                       <p class="right-text2">
-                        <span id="monthlyInstallment">4,704,000</span>
+                        <span id="monthlyInstallment">۴,۷۰۴,۰۰۰</span>
                         <span class="right-text3">تومان</span>
                       </p>
                     </div>
-                    <div class="loan-info-item d-flex justify-content-between">
+                    <div class="loan-info-item">
                       <p class="right-text1">مجموع بازپرداخت:</p>
                       <p class="right-text2">
-                        <span id="totalRepayment">56,448,000</span>
+                        <span id="totalRepayment">۵۶,۴۴۸,۰۰۰</span>
                         <span class="right-text3">تومان</span>
                       </p>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div
-                class="sec5-left col-12 d-flex align-items-end justify-content-start mt-3 mt-md-0 ltr-box"
-              >
-                <button class="sec5-left-btn">درخواست وام</button>
+                  <div class="calc-cta-box">
+                    <p class="calc-cta-note">
+                      نرخ سود مصوب بانکی ۲۳٪ سالانه • واریز در قالب وام کارت
+                      شتابی
+                    </p>
+                    <button type="button" class="sec5-left-btn">
+                      ثبت درخواست این وام
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="sec6 mt-5">
-        <div class="px-5">
-          <div class="sec6-boxs row">
+      <!-- ۶. طرح حامی لندو (Section 6) -->
+      <section class="sec6" id="hami-section">
+        <div class="lendo-container">
+          <div class="promo-split-card row g-4">
             <div
-              class="sec6-box-right col-md-12 col-lg-6 d-flex flex-column justify-content-center"
+              class="sec6-box-right col-12 col-lg-6 d-flex flex-column justify-content-center"
             >
-              <p class="sec6-text1">
+              <span class="step-counter-badge" style="width: fit-content"
+                >⚡ واریز آنی به کارت بانکی</span
+              >
+              <h2 class="sec6-text1">
                 طرح حامی لندو، در کمتر از چند دقیقه وام بگیر!
-              </p>
+              </h2>
               <p class="sec6-text2">
                 با طرح حامی، می‌تونی نقدینگی موردنیازت رو در مواقع ضروری فراهم
                 کنی. این وام بدون سوده و فقط با داشتن رتبه اعتباری مناسب،
@@ -547,31 +769,31 @@
                 به‌صورت پلکانی افزایش پیدا می‌کنه و موعد تسویه‌ وام ابتدای ماه
                 بعده.
               </p>
-              <a href=""
-                >ثبت درخواست
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#0082fd"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-arrow-left-icon lucide-arrow-left"
-                >
-                  <path d="m12 19-7-7 7-7"></path>
-                  <path d="M19 12H5"></path></svg
-              ></a>
+              <div>
+                <a href="#calculator-section" class="cta-inline-link">
+                  <span>ثبت درخواست وام حامی</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
-            <div
-              class="sec6-box-left col-md-12 col-lg-6 d-flex justify-content-end"
-            >
+            <div class="sec6-box-left col-12 col-lg-6">
               <div class="sec6-img">
                 <img
                   src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2Fhome-page-hami-2.png&w=1080&q=75"
-                  alt=""
+                  alt="طرح حامی لندو"
                 />
               </div>
             </div>
@@ -579,71 +801,87 @@
         </div>
       </section>
 
-      <section class="sec7 mt-5">
-        <div class="px-5">
-          <div class="sec6-boxs row">
-            <div class="sec6-box-left col-md-12 col-lg-6">
+      <!-- ۷. باشگاه مشتریان لندولند (Section 7) -->
+      <section class="sec7" id="lendoland-section">
+        <div class="lendo-container">
+          <div class="promo-split-card row g-4">
+            <div class="sec6-box-left col-12 col-lg-6">
               <div class="sec6-img">
                 <img
                   src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fland%2FhomePageLendolandBanner-2.png&w=1080&q=75"
-                  alt=""
+                  alt="باشگاه مشتریان لندولند"
                 />
               </div>
             </div>
 
             <div
-              class="sec6-box-right col-md-12 col-lg-6 d-flex flex-column justify-content-center"
+              class="sec6-box-right col-12 col-lg-6 d-flex flex-column justify-content-center"
             >
-              <p class="sec6-text1">
+              <span class="step-counter-badge" style="width: fit-content"
+                >🎁 باشگاه مشتریان وفادار</span
+              >
+              <h2 class="sec6-text1">
                 باشگاه لندولند، امتیازت رو به وام تبدیل کن!
-              </p>
+              </h2>
               <p class="sec6-text2">
                 با عضویت در باشگاه مشتریان لندو (لندولند)، می‌تونی با انجام
                 کارهای ساده مثل خرید، ثبت‌نام و شرکت در مأموریت‌های روزانه،
                 امتیاز جمع کنی. این امتیازها قابل استفاده برای دریافت وام، شرکت
                 در قرعه‌کشی‌ها، یا دریافت جوایز و تخفیف‌های متنوع هستن.
               </p>
-              <a href=""
-                >ورود به لندولند
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#0082fd"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-arrow-left-icon lucide-arrow-left"
-                >
-                  <path d="m12 19-7-7 7-7"></path>
-                  <path d="M19 12H5"></path></svg
-              ></a>
+              <div>
+                <a href="#calculator-section" class="cta-inline-link">
+                  <span>ورود به لندولند</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="sec8 mt-2">
-        <div class="sec8-box px-5">
-          <img
-            class="w-100 mt-5"
-            src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2Fhome-store-new-banner.JPG&w=1920&q=75"
-            alt=""
-          />
+      <!-- ۸. بنر فروشگاه‌های طرف قرارداد (Section 8) -->
+      <section class="sec8">
+        <div class="lendo-container">
+          <div class="sec8-box">
+            <a href="#calculator-section" aria-label="فروشگاه‌های لندو">
+              <img
+                src="https://lendo.ir/_next/image?url=https%3A%2F%2Fs4.lendo.ir%2Flendo-static%2Flendo-v2%2Fhome%2Fhome-store-new-banner.JPG&w=1920&q=75"
+                alt="خرید اقساطی از صدها فروشگاه معتبر با لندو"
+              />
+            </a>
+          </div>
         </div>
       </section>
 
-      <section class="sec9 mt-5">
-        <div class="sec9-boxs px-5">
-          <h2 class="sec9-title">سوالات پر تکرار</h2>
+      <!-- ۹. سوالات متداول (Section 9) -->
+      <section class="sec9" id="faq-section">
+        <div class="lendo-container">
+          <h2 class="sec9-title">سوالات پرتکرار</h2>
           <p class="sec9-description">
-            پاسخ به سوالات شما درباره نحوه دریافت وام خرید کالا
+            پاسخ به پرسش‌های متداول شما درباره نحوه دریافت وام خرید کالا و خدمات
           </p>
 
           <div class="parent">
-            <div class="child" tabindex="0" role="button" aria-expanded="false">
+            <div
+              class="child open"
+              tabindex="0"
+              role="button"
+              aria-expanded="true"
+            >
               <span class="close"></span>
               <p class="question">چگونه از لندو وام بگیرم؟</p>
               <p class="answer">
@@ -661,11 +899,11 @@
               <p class="answer">
                 برای دریافت وام لندو، سه مدرک زیر مورد نیاز است:
                 <br />
-                1. تصویر پشت و روی کارت ملی جدید یا رسید تعویض کارت ملی قدیمی
+                ۱. تصویر پشت و روی کارت ملی جدید یا رسید تعویض کارت ملی قدیمی
                 <br />
-                2. نمره اعتباری قابل قبول
+                ۲. نمره اعتباری قابل قبول در سامانه اعتبارسنجی بانکی
                 <br />
-                3. گواهی ثنا
+                ۳. ثبت‌نام در سامانه ثنا
               </p>
             </div>
             <div class="child" tabindex="0" role="button" aria-expanded="false">
@@ -678,12 +916,8 @@
                 و «وام کارت سفید» به کاربران لندو عرضه می‌شود و شما می‌توانید
                 بسته به نوع وام کارت خود، از آن برای خرید کالا از فروشگاه‌های
                 مختلف استفاده کنید. بعد از اینکه درخواست اعتبارسنجی شما تایید
-                شد، «وام کارت» از طریق پست به آدرستان ارسال می‌شود. البته توجه
-                داشته باشید که تا مرحله امضای قراردادها، باید حتما از طریق حساب
-                کاربری خود، کارتتان را فعال کنید. درخواستتان که نهایی شد، مبلغ
-                وام در «وام کارتتان» شارژ می‌شود و می‌توانید از موجودی کارت که
-                همان مبلغ وام درخواستی‌تان است، برای خرید کالاهای مورد نظر خود
-                استفاده کنید.
+                شد، «وام کارت» از طریق پست به آدرستان ارسال می‌شود و پس از امضای
+                قراردادها، مبلغ وام در آن شارژ می‌گردد.
               </p>
             </div>
             <div class="child" tabindex="0" role="button" aria-expanded="false">
@@ -691,8 +925,8 @@
               <p class="question">تفاوت وام کارت آبی و سفید در چیست؟</p>
               <p class="answer">
                 شما با دریافت وام کارت آبی امکان خرید کالا از فروشگاه‌های طرف
-                قرارداد لندو را خواهید داشت؛ درصورتی که با وام کارت سفید
-                می‌توانید از تمامی فروشگاه های آنلاین و دستگاه های کارتخوان
+                قرارداد لندو را خواهید داشت؛ در صورتی که با وام کارت سفید
+                می‌توانید از تمامی فروشگاه‌های آنلاین و دستگاه‌های کارتخوان
                 سراسر کشور خرید خود را انجام دهید و محدود به فروشگاه‌های طرف
                 قرارداد نخواهید بود.
               </p>
@@ -701,31 +935,26 @@
               <span class="close"></span>
               <p class="question">سود وام لندو چقدر است؟</p>
               <p class="answer">
-                سود اقساط وام شما طبق نرخ مصوب بانک مرکزی، 23 درصد است.
+                سود اقساط وام شما طبق نرخ مصوب بانک مرکزی، ۲۳ درصد سالانه است.
               </p>
             </div>
             <div class="child" tabindex="0" role="button" aria-expanded="false">
               <span class="close"></span>
               <p class="question">چطور باید سفته الکترونیکی را خریداری کرد؟</p>
               <p class="answer">
-                برای دریافت وام لندو، باید سفته الکترونیکی مورد نیاز را از طریق
-                خود سایت لندو خریداری کنید. برای مشاهده آموزش خرید سفته
-                الکترونیکی، بهاین صفحه مراجعه کنید.
+                برای دریافت وام لندو، باید سفته الکترونیکی مورد نیاز را به صورت
+                کاملاً آنلاین از طریق حساب کاربری خود در سایت لندو خریداری و
+                امضا کنید.
               </p>
             </div>
             <div class="child" tabindex="0" role="button" aria-expanded="false">
               <span class="close"></span>
               <p class="question">پرداخت اقساط در لندو چگونه است؟</p>
               <p class="answer">
-                روش پرداخت اقساط به صورت ۱۲ ماهه است و شما می‌توانید یکی از این
-                روش‌ها را انتخاب کنید. همچنین باید اقساط خود را به صورت آنلاین
-                از طریق سایت لندو و حساب کاربری‌تان بپردازید. اگر در پرداخت
-                اقساط خود تاخیر داشته باشید، از شما جریمه دیرکرد دریافت می‌شود و
-                اگر اقساط خود را زودتر از موعد پرداخت کنید، نمره اعتبارتان در
-                لندو افزایش پیدا می‌کند. ضمنا در صورتی که قسط خود را پرداخت
-                کردید اما بعد از ۷۲ ساعت کاری پرداخت شما ثبت نشد و مبلغ
-                پرداخت‌شده هم به حسابتان برنگشت، لطفا با تیم پشتیبانی ما تماس
-                بگیرید تا پرداخت قسط شما در سایت لندو ثبت شود.
+                روش پرداخت اقساط به صورت ۶، ۹ یا ۱۲ ماهه است. اقساط خود را به
+                صورت آنلاین از طریق سایت لندو و حساب کاربری‌تان می‌پردازید.
+                خوش‌حسابی و پرداخت به‌موقع اقساط باعث افزایش رتبه اعتباری شما در
+                لندو و سیستم بانکی می‌شود.
               </p>
             </div>
             <div class="child" tabindex="0" role="button" aria-expanded="false">
@@ -735,8 +964,8 @@
               </p>
               <p class="answer">
                 لندو هیچ‌گونه دسترسی به اقساط پرداختی شما ندارد. زمانی که قسط
-                خود را پرداخت می‌کنید، مبلغ پرداختی مستقیما وارد حساب بانک
-                می‌شود.
+                خود را پرداخت می‌کنید، مبلغ پرداختی مستقیماً وارد حساب بانک
+                تامین‌کننده اعتبار می‌شود.
               </p>
             </div>
           </div>
@@ -744,10 +973,13 @@
       </section>
     </main>
 
-    <footer class="">
-      <div class="sec10 px-5">
-        <div class="sec10-boxs row">
-          <div class="sec10-right d-flex col-sm-12 col-md-6">
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="site-footer">
+      <div class="lendo-container">
+        <div class="sec10-boxs">
+          <div class="sec10-right">
             <svg
               class="sec10-logo"
               focusable="false"
@@ -783,20 +1015,28 @@
             </svg>
             <h2>دانلود اپلیکیشن لِندو</h2>
           </div>
-          <div class="sec10-left col-sm-12 col-md-6 d-flex justify-content-end">
-            <a href="">
+          <div class="sec10-left">
+            <a href="#hero-section">
               <img
                 src="https://s4.lendo.ir/lendo-static/lendo-v2/footer/pwaIcon.svg"
                 alt="نسخه وب اپلیکیشن"
               />
             </a>
-            <a href="https://myket.ir/app/com.lendo.lendo" target="_blank">
+            <a
+              href="https://myket.ir/app/com.lendo.lendo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
                 src="https://s4.lendo.ir/lendo-static/lendo-v2/footer/myket.svg"
                 alt="دانلود از مایکت"
               />
             </a>
-            <a href="https://cafebazaar.ir/app/com.lendo.lendo" target="_blank">
+            <a
+              href="https://cafebazaar.ir/app/com.lendo.lendo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
                 src="https://s4.lendo.ir/lendo-static/lendo-v2/footer/coffe-bazzar.svg"
                 alt="دانلود از کافه بازار"
@@ -804,204 +1044,174 @@
             </a>
           </div>
         </div>
-      </div>
 
-      <div class="footer-text px-5 row mt-5">
-        <div class="text1 col-sm-12 col-md-6">
-          <h4>راهنمای مشتریان</h4>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>راهنمای مشتریان</h4>
+            <a href="#steps-section"><h5>آموزش تصویری دریافت وام</h5></a>
+            <a href="#faq-section"><h5>سوالات متداول و راهنما</h5></a>
+            <a href="#faq-section"><h5>مدارک لازم برای ثبت‌نام</h5></a>
+            <a href="#calculator-section"><h5>محاسبه هوشمند اقساط</h5></a>
+            <a href="#steps-section"><h5>راهنمای امضای الکترونیکی</h5></a>
+            <a href="#steps-section"><h5>راهنمای سفته الکترونیکی</h5></a>
+          </div>
 
-          <a href="/landing/credit-guide">
-            <h5>آموزش تصویری دریافت وام</h5>
-          </a>
-          <a href="">
-            <h5>راهنما</h5>
-          </a>
-          <a href="">
-            <h5>مدارک لازم</h5>
-          </a>
-          <a href="">
-            <h5>محاسبه اقساط</h5>
-          </a>
-          <a href="">
-            <h5>راهنمای امضای الکترونیکی</h5>
-          </a>
-          <a href="">
-            <h5>راهنمای سفته الکترونیکی</h5>
-          </a>
-        </div>
-        <div class="text2 col-sm-12 col-md-6">
-          <h4>لندو</h4>
-
-          <a href="">
-            <h5>درباره ما</h5>
-          </a>
-          <a href="">
-            <h5>تماس با ما</h5>
-          </a>
-          <a href="">
-            <h5>داستان لندو!</h5>
-          </a>
-          <a href="">
-            <h5>از ایران رنتر تا لندو</h5>
-          </a>
-          <a href="">
-            <h5>فرهنگ ما</h5>
-          </a>
-          <a href="">
-            <h5>مزایای شغلی ما</h5>
-          </a>
-          <a href="https://lendo.ir/blog/">
-            <h5>بلاگ</h5>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-end row">
-        <div class="footer-end-right pe-5 col-sm-12 col-md-7">
-          <span class="span-end">
-            کلیه حقوق این سایت متعلق به شرکت هوشمند آرمان گستر آریا (لندو)است.
-          </span>
-          <span class="span-end me-4">Copyrights - Lendo Co. - 1401</span>
-        </div>
-        <div
-          class="footer-end-left ps-5 col-sm-12 col-md-5 d-flex justify-content-end"
-        >
-          <a href="https://t.me/lendoir" target="_blank">
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium lendo-css-10qrq6e"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 28 28"
-              height="28"
-              width="28"
-              fill="none"
+          <div class="footer-col">
+            <h4>لندو</h4>
+            <a href="#hero-section"><h5>درباره ما</h5></a>
+            <a href="#faq-section"><h5>تماس با پشتیبانی</h5></a>
+            <a href="#hami-section"><h5>طرح فوری حامی</h5></a>
+            <a href="#lendoland-section"><h5>باشگاه مشتریان لندولند</h5></a>
+            <a href="#features-section"
+              ><h5>فرهنگ سازمانی و فرصت‌های شغلی</h5></a
             >
-              <circle cx="14" cy="14" r="13.5" stroke="#23417D"></circle>
-              <g clip-path="url(#clip0_33153_34561)">
+            <a
+              href="https://lendo.ir/blog/"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><h5>مجله اینترنتی لندو</h5></a
+            >
+          </div>
+
+          <div class="footer-col footer-trust-col">
+            <h4>پشتیبانی و مجوزها</h4>
+            <p>
+              لندو؛ پلتفرم پیشرو فین‌تک ایران در زمینه ارائه تسهیلات خرد و خرید
+              اقساطی آنلاین با همکاری بانک آینده.
+              <br />
+              <strong>تلفن پشتیبانی:</strong> ۰۲۱-۹۱۰۱۲۹۷۹ (همه‌روزه ۸ الی ۲۰)
+            </p>
+            <div class="footer-badges">
+              <div class="trust-badge-box">
+                <span>🛡️</span>
+                <span>ای‌نماد</span>
+              </div>
+              <div class="trust-badge-box">
+                <span>🏦</span>
+                <span>بانک آینده</span>
+              </div>
+              <div class="trust-badge-box">
+                <span>💳</span>
+                <span>شبکه شتاب</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-end">
+        <div class="lendo-container footer-end-inner">
+          <div>
+            <span class="span-end">
+              کلیه حقوق این سایت متعلق به شرکت هوشمند آرمان گستر آریا (لندو)
+              است.
+            </span>
+          </div>
+          <div class="footer-socials">
+            <a
+              href="https://t.me/lendoir"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="تلگرام لندو"
+            >
+              <svg
+                focusable="false"
+                aria-hidden="true"
+                viewBox="0 0 28 28"
+                height="28"
+                width="28"
+                fill="none"
+              >
+                <circle cx="14" cy="14" r="13.5" stroke="#23417D"></circle>
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M19.1851 8.28656C19.3498 8.21722 19.5302 8.19331 19.7073 8.21731C19.8844 8.24131 20.0519 8.31234 20.1922 8.42302C20.3326 8.5337 20.4407 8.67997 20.5053 8.84662C20.57 9.01326 20.5888 9.19419 20.5598 9.37056L19.0478 18.5419C18.9011 19.4266 17.9304 19.9339 17.1191 19.4932C16.4404 19.1246 15.4324 18.5566 14.5258 17.9639C14.0724 17.6672 12.6838 16.7172 12.8544 16.0412C13.0011 15.4632 15.3344 13.2912 16.6678 11.9999C17.1911 11.4926 16.9524 11.1999 16.3344 11.6666C14.7998 12.8252 12.3358 14.5872 11.5211 15.0832C10.8024 15.5206 10.4278 15.5952 9.97975 15.5206C9.16242 15.3846 8.40442 15.1739 7.78575 14.9172C6.94975 14.5706 6.99042 13.4212 7.78509 13.0866L19.1851 8.28656Z"
                   fill="#23417D"
                 ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_33153_34561">
-                  <rect
-                    width="16"
-                    height="16"
-                    fill="white"
-                    transform="translate(6 6)"
-                  ></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </a>
+              </svg>
+            </a>
 
-          <a href="https://www.linkedin.com/company/lendoir" target="_blank">
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium lendo-css-10qrq6e"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 28 28"
-              height="28"
-              width="28"
-              fill="none"
+            <a
+              href="https://www.linkedin.com/company/lendoir"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="لینکدین لندو"
             >
-              <circle cx="14" cy="14" r="13.5" stroke="#23417D"></circle>
-              <path
-                d="M10.2848 11.9234H7.55256V20.6666H10.2848V11.9234ZM10.5307 8.91795C10.5321 8.71128 10.4929 8.50635 10.4151 8.31486C10.3373 8.12337 10.2226 7.94907 10.0775 7.80192C9.93237 7.65476 9.75969 7.53763 9.56929 7.45722C9.3789 7.37681 9.17454 7.33468 8.96786 7.33325H8.91868C8.4984 7.33325 8.09532 7.50021 7.79813 7.7974C7.50094 8.09459 7.33398 8.49766 7.33398 8.91795C7.33398 9.33824 7.50094 9.74131 7.79813 10.0385C8.09532 10.3357 8.4984 10.5027 8.91868 10.5027C9.12537 10.5077 9.33103 10.472 9.52392 10.3976C9.71681 10.3232 9.89314 10.2115 10.0428 10.0689C10.1925 9.92629 10.3127 9.7556 10.3964 9.56655C10.4801 9.37751 10.5257 9.17382 10.5307 8.96713V8.91795ZM20.6673 15.3551C20.6673 12.7267 18.9952 11.7048 17.334 11.7048C16.7901 11.6776 16.2485 11.7934 15.7634 12.0408C15.2782 12.2882 14.8664 12.6585 14.569 13.1147H14.4925V11.9234H11.9241V20.6666H14.6564V16.0163C14.6169 15.54 14.7669 15.0674 15.0739 14.7011C15.3808 14.3348 15.8199 14.1045 16.2957 14.06H16.3996C17.2684 14.06 17.9132 14.6065 17.9132 15.9835V20.6666H20.6455L20.6673 15.3551Z"
-                fill="#23417D"
-              ></path>
-            </svg>
-          </a>
+              <svg
+                focusable="false"
+                aria-hidden="true"
+                viewBox="0 0 28 28"
+                height="28"
+                width="28"
+                fill="none"
+              >
+                <circle cx="14" cy="14" r="13.5" stroke="#23417D"></circle>
+                <path
+                  d="M10.2848 11.9234H7.55256V20.6666H10.2848V11.9234ZM10.5307 8.91795C10.5321 8.71128 10.4929 8.50635 10.4151 8.31486C10.3373 8.12337 10.2226 7.94907 10.0775 7.80192C9.93237 7.65476 9.75969 7.53763 9.56929 7.45722C9.3789 7.37681 9.17454 7.33468 8.96786 7.33325H8.91868C8.4984 7.33325 8.09532 7.50021 7.79813 7.7974C7.50094 8.09459 7.33398 8.49766 7.33398 8.91795C7.33398 9.33824 7.50094 9.74131 7.79813 10.0385C8.09532 10.3357 8.4984 10.5027 8.91868 10.5027C9.12537 10.5077 9.33103 10.472 9.52392 10.3976C9.71681 10.3232 9.89314 10.2115 10.0428 10.0689C10.1925 9.92629 10.3127 9.7556 10.3964 9.56655C10.4801 9.37751 10.5257 9.17382 10.5307 8.96713V8.91795ZM20.6673 15.3551C20.6673 12.7267 18.9952 11.7048 17.334 11.7048C16.7901 11.6776 16.2485 11.7934 15.7634 12.0408C15.2782 12.2882 14.8664 12.6585 14.569 13.1147H14.4925V11.9234H11.9241V20.6666H14.6564V16.0163C14.6169 15.54 14.7669 15.0674 15.0739 14.7011C15.3808 14.3348 15.8199 14.1045 16.2957 14.06H16.3996C17.2684 14.06 17.9132 14.6065 17.9132 15.9835V20.6666H20.6455L20.6673 15.3551Z"
+                  fill="#23417D"
+                ></path>
+              </svg>
+            </a>
 
-          <a href="https://twitter.com/Lendoir" target="_blank">
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium lendo-css-10qrq6e"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 28 28"
-              height="28"
-              width="28"
-              fill="none"
+            <a
+              href="https://twitter.com/Lendoir"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="توییتر لندو"
             >
-              <circle cx="14" cy="14" r="13.5" stroke="#23417D"></circle>
-              <g clip-path="url(#clip0_33153_34560)">
+              <svg
+                focusable="false"
+                aria-hidden="true"
+                viewBox="0 0 28 28"
+                height="28"
+                width="28"
+                fill="none"
+              >
+                <circle cx="14" cy="14" r="13.5" stroke="#23417D"></circle>
                 <path
                   d="M20.974 9.33333C20.4607 9.56667 19.9073 9.72 19.334 9.79333C19.9207 9.44 20.374 8.88 20.5873 8.20667C20.034 8.54 19.4207 8.77333 18.774 8.90667C18.2473 8.33333 17.5073 8 16.6673 8C15.1007 8 13.8207 9.28 13.8207 10.86C13.8207 11.0867 13.8473 11.3067 13.894 11.5133C11.5207 11.3933 9.40734 10.2533 8.00068 8.52667C7.75401 8.94667 7.61401 9.44 7.61401 9.96C7.61401 10.9533 8.11401 11.8333 8.88734 12.3333C8.41401 12.3333 7.97401 12.2 7.58734 12V12.02C7.58734 13.4067 8.57401 14.5667 9.88068 14.8267C9.46124 14.942 9.0207 14.9579 8.59401 14.8733C8.77508 15.4417 9.1297 15.9389 9.60802 16.2953C10.0863 16.6516 10.6643 16.8491 11.2607 16.86C10.2498 17.6603 8.99668 18.0929 7.70734 18.0867C7.48068 18.0867 7.25401 18.0733 7.02734 18.0467C8.29401 18.86 9.80068 19.3333 11.414 19.3333C16.6673 19.3333 19.554 14.9733 19.554 11.1933C19.554 11.0667 19.554 10.9467 19.5473 10.82C20.1073 10.42 20.5873 9.91333 20.974 9.33333Z"
                   fill="#23417D"
                 ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_33153_34560">
-                  <rect
-                    width="16"
-                    height="16"
-                    fill="white"
-                    transform="translate(6 6)"
-                  ></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </a>
-          <a
-            href="https://www.instagram.com/accounts/login/?next=/lendoir"
-            target="_blank"
-          >
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium lendo-css-10qrq6e"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 28 28"
-              height="28"
-              width="28"
-              fill="none"
-            >
-              <circle cx="14" cy="14" r="13.5" stroke="#23417D"></circle>
-              <g clip-path="url(#clip0_33153_34559)">
-                <path
-                  d="M14.6844 7.33325C15.4344 7.33525 15.8151 7.33925 16.1437 7.34859L16.2731 7.35325C16.4224 7.35859 16.5697 7.36525 16.7477 7.37325C17.4571 7.40659 17.9411 7.51859 18.3657 7.68325C18.8057 7.85259 19.1764 8.08192 19.5471 8.45192C19.8862 8.78507 20.1485 9.18823 20.3157 9.63325C20.4804 10.0579 20.5924 10.5419 20.6257 11.2519C20.6337 11.4293 20.6404 11.5766 20.6457 11.7266L20.6497 11.8559C20.6597 12.1839 20.6637 12.5646 20.6651 13.3146L20.6657 13.8119V14.6853C20.6674 15.1715 20.6623 15.6578 20.6504 16.1439L20.6464 16.2733C20.6411 16.4233 20.6344 16.5706 20.6264 16.7479C20.5931 17.4579 20.4797 17.9413 20.3157 18.3666C20.1485 18.8116 19.8862 19.2148 19.5471 19.5479C19.2139 19.887 18.8108 20.1494 18.3657 20.3166C17.9411 20.4813 17.4571 20.5933 16.7477 20.6266L16.2731 20.6466L16.1437 20.6506C15.8151 20.6599 15.4344 20.6646 14.6844 20.6659L14.1871 20.6666H13.3144C12.8279 20.6683 12.3414 20.6632 11.8551 20.6513L11.7257 20.6473C11.5675 20.6413 11.4093 20.6344 11.2511 20.6266C10.5417 20.5933 10.0577 20.4813 9.63241 20.3166C9.18763 20.1493 8.78471 19.887 8.45174 19.5479C8.11237 19.2148 7.84982 18.8117 7.68241 18.3666C7.51774 17.9419 7.40574 17.4579 7.37241 16.7479L7.35241 16.2733L7.34908 16.1439C7.33679 15.6578 7.33123 15.1715 7.33241 14.6853V13.3146C7.33057 12.8283 7.33545 12.3421 7.34708 11.8559L7.35174 11.7266C7.35708 11.5766 7.36374 11.4293 7.37174 11.2519C7.40508 10.5419 7.51708 10.0586 7.68174 9.63325C7.84954 9.18805 8.11256 8.78488 8.45241 8.45192C8.78518 8.11295 9.18787 7.85063 9.63241 7.68325C10.0577 7.51859 10.5411 7.40659 11.2511 7.37325C11.4284 7.36525 11.5764 7.35859 11.7257 7.35325L11.8551 7.34925C12.3412 7.33741 12.8275 7.3323 13.3137 7.33392L14.6844 7.33325ZM13.9991 10.6666C13.115 10.6666 12.2672 11.0178 11.6421 11.6429C11.0169 12.268 10.6657 13.1159 10.6657 13.9999C10.6657 14.884 11.0169 15.7318 11.6421 16.3569C12.2672 16.9821 13.115 17.3333 13.9991 17.3333C14.8831 17.3333 15.731 16.9821 16.3561 16.3569C16.9812 15.7318 17.3324 14.884 17.3324 13.9999C17.3324 13.1159 16.9812 12.268 16.3561 11.6429C15.731 11.0178 14.8831 10.6666 13.9991 10.6666ZM13.9991 11.9999C14.2617 11.9999 14.5218 12.0516 14.7645 12.152C15.0071 12.2525 15.2276 12.3998 15.4134 12.5855C15.5991 12.7712 15.7465 12.9916 15.847 13.2342C15.9476 13.4769 15.9994 13.7369 15.9994 13.9996C15.9995 14.2622 15.9478 14.5223 15.8473 14.765C15.7468 15.0076 15.5995 15.2281 15.4139 15.4139C15.2282 15.5996 15.0077 15.747 14.7651 15.8476C14.5225 15.9481 14.2624 15.9999 13.9997 15.9999C13.4693 15.9999 12.9606 15.7892 12.5855 15.4141C12.2105 15.0391 11.9997 14.5304 11.9997 13.9999C11.9997 13.4695 12.2105 12.9608 12.5855 12.5857C12.9606 12.2106 13.4693 11.9999 13.9997 11.9999M17.4997 9.66659C17.2787 9.66659 17.0668 9.75438 16.9105 9.91066C16.7542 10.0669 16.6664 10.2789 16.6664 10.4999C16.6664 10.7209 16.7542 10.9329 16.9105 11.0892C17.0668 11.2455 17.2787 11.3333 17.4997 11.3333C17.7208 11.3333 17.9327 11.2455 18.089 11.0892C18.2453 10.9329 18.3331 10.7209 18.3331 10.4999C18.3331 10.2789 18.2453 10.0669 18.089 9.91066C17.9327 9.75438 17.7208 9.66659 17.4997 9.66659Z"
-                  fill="#23417D"
-                ></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_33153_34559">
-                  <rect
-                    width="16"
-                    height="16"
-                    fill="white"
-                    transform="translate(6 6)"
-                  ></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </a>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
 
-    <!-- مودال ورود و ثبت‌نام -->
+    <!-- ==========================================
+         AUTH MODAL (LOGIN & REGISTER)
+         ========================================== -->
     <div class="modal-overlay" id="authModal">
       <div class="modal-card">
-        <button class="modal-close-btn" id="closeAuthModal">&times;</button>
+        <button class="modal-close-btn" id="closeAuthModal" type="button">
+          &times;
+        </button>
 
-        <!-- تب‌های سوئیچ بین ورود و ثبت‌نام -->
         <div class="auth-tabs">
-          <button class="tab-btn active" id="loginTabBtn">ورود</button>
-          <button class="tab-btn" id="registerTabBtn">ثبت‌نام</button>
+          <button class="tab-btn active" id="loginTabBtn" type="button">
+            ورود به حساب
+          </button>
+          <button class="tab-btn" id="registerTabBtn" type="button">
+            ثبت‌نام سریع
+          </button>
         </div>
 
         <div class="auth-alert" id="authAlert"></div>
 
         <!-- فرم ورود -->
         <form id="loginForm" class="auth-form active" novalidate>
+          <div class="auth-demo-hint">
+            اطلاعات دمو جهت تست: نام کاربری <code>admin</code> و رمز
+            <code>admin</code>
+          </div>
           <div class="input-group">
             <label for="loginUsername">نام کاربری</label>
             <input
               type="text"
               id="loginUsername"
-              placeholder="نام کاربری خود را وارد کنید"
+              placeholder="مثلاً: admin"
               required
             />
           </div>
@@ -1014,7 +1224,7 @@
               required
             />
           </div>
-          <button type="submit" class="btn-primary">ورود به حساب</button>
+          <button type="submit" class="btn-primary">ورود به حساب کاربری</button>
         </form>
 
         <!-- فرم ثبت‌نام -->
@@ -1047,21 +1257,23 @@
               required
             />
           </div>
-          <button type="submit" class="btn-primary">ثبت‌نام در سایت</button>
+          <button type="submit" class="btn-primary">ایجاد حساب کاربری</button>
         </form>
       </div>
     </div>
 
-    <!-- مودال درخواست‌های من (سبد وام) -->
+    <!-- ==========================================
+         MY REQUESTS MODAL (LOAN CART)
+         ========================================== -->
     <div class="modal-overlay" id="myRequestsModal">
       <div class="modal-card requests-modal-card">
-        <button class="modal-close-btn" id="closeMyRequestsModal">
+        <button class="modal-close-btn" id="closeMyRequestsModal" type="button">
           &times;
         </button>
 
         <div class="requests-modal-header">
-          <h3>درخواست‌های من</h3>
-          <p>لیست وام‌هایی که درخواست داده‌اید</p>
+          <h3>سبد درخواست‌های وام من</h3>
+          <p>لیست تسهیلاتی که در این سامانه ثبت کرده‌اید</p>
         </div>
 
         <div class="requests-list" id="requestsList"></div>
@@ -1076,15 +1288,16 @@
     <!-- نوتیفیکیشن شناور -->
     <div class="toast-notification" id="toastNotification"></div>
 
-    <!-- دکمه چت  -->
+    <!-- ویجت چت پشتیبانی آنلاین -->
     <button
       id="chatToggleBtn"
       class="chat-toggle-btn"
+      type="button"
       aria-label="پشتیبانی آنلاین"
     >
       <svg
-        width="32"
-        height="32"
+        width="30"
+        height="30"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -1098,15 +1311,20 @@
         <circle cx="16" cy="11.25" r="1.25" fill="#007026" />
       </svg>
     </button>
+
     <div id="chatWidget" class="chat-widget">
-      <!-- هدر چت -->
       <div class="chat-header">
-        <button id="chatCloseBtn" class="chat-close-btn" aria-label="بستن">
+        <button
+          id="chatCloseBtn"
+          class="chat-close-btn"
+          type="button"
+          aria-label="بستن"
+        >
           &times;
         </button>
 
         <div class="chat-header-center">
-          <h4>پشتیبانی آنلاین</h4>
+          <h4>پشتیبانی هوشمند لندو</h4>
           <span>پاسخگوی سوالات شما هستیم</span>
         </div>
 
@@ -1129,45 +1347,45 @@
         </div>
       </div>
 
-      <!-- بدنه پیام‌ها -->
       <div class="chat-body">
-        <!-- گزینه ها -->
         <div class="chat-message">
           <div class="chat-bubble options-bubble">
-            <p class="bubble-title">جواب سوالاتت اینجاست!</p>
+            <p class="bubble-title">روی موضوع موردنظر خود کلیک کنید:</p>
             <div class="chat-options">
-              <button class="option-btn">راهنمایی وام حامی</button>
-              <button class="option-btn">اعتبارسنجی و مشاوره</button>
-              <button class="option-btn">وام‌های بلند مدت</button>
-              <button class="option-btn">ارتباط با کارشناس</button>
+              <button type="button" class="option-btn">
+                راهنمایی وام حامی
+              </button>
+              <button type="button" class="option-btn">
+                اعتبارسنجی و مشاوره
+              </button>
+              <button type="button" class="option-btn">وام‌های بلند مدت</button>
+              <button type="button" class="option-btn">
+                ارتباط با کارشناس
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- پیام متنی پشتیبانی -->
         <div class="chat-message with-avatar">
           <div class="chat-bubble text-bubble">
-            <p>لندویی عزیز</p>
-            <p>درود</p>
-            <p>موقتا پشتیبانیمون تلفنیه و چت آنلاین رو بستیم 🤲</p>
-            <br />
+            <p>لندویی عزیز، درود 🌱</p>
             <p>
-              خوشحال میشیم صداتون رو بشنویم و از طریق تماس تلفنی همراهتون باشیم.
+              می‌تونید یکی از گزینه‌های بالا رو انتخاب کنید یا با مرکز تماس ما
+              در ارتباط باشید:
             </p>
-            <p class="phone-number">۰۲۱۹۱۰۱۲۹۷۹</p>
+            <p class="phone-number">۰۲۱-۹۱۰۱۲۹۷۹</p>
           </div>
           <img
             src="https://api.dicebear.com/7.x/avataaars/svg?seed=3"
             alt="پشتیبان"
             class="message-avatar"
           />
-          <span class="chat-time">یک ساعت پیش</span>
+          <span class="chat-time">پشتیبانی آنلاین</span>
         </div>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="Js/script.js"></script>
   </body>
 </html>
